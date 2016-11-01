@@ -1,0 +1,7 @@
+<chart caption="Motivos de peticiones" startinangle="120" showlabels="0" showlegend="1" enablemultislicing="0" slicingdistance="15" showpercentvalues="1" showpercentintooltip="0" theme="ocean">
+<set label="Becas" value="70" />
+<set label="Movilidad" value="30" />
+<set label="Interes" value="22" />
+<set label="Otro" value="10" color="e44a00" />
+<set label="Padres" value="9" />
+</chart>

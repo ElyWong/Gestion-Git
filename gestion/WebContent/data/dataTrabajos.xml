@@ -1,0 +1,7 @@
+<chart caption="Trabajos realizados por analista" subcaption="Basado en los documentos impresos" yaxisname="Número documentos" plotgradientcolor="" bgcolor="FFFFFF" showplotborder="0" divlinecolor="CCCCCC" showvalues="1" showcanvasborder="0" canvasbordercolor="CCCCCC" canvasborderthickness="1" showyaxisvalues="0" showlegend="1" showshadow="0" labelsepchar=": " basefontcolor="000000" labeldisplay="AUTO" numberscalevalue="1000,1000,1000" numberscaleunit="K,M,B" palettecolors="#008ee4,#9b59b6,#6baa01,#e44a00,#f8bd19,#d35400,#bdc3c7,#95a5a6,#34495e,#1abc9c" showborder="0">
+<set label="Olivia" value="50" />
+<set label="Gina" value="30" />
+<set label="Rigoberto" value="22" />
+<set label="Eduardo" value="70" color="e44a00" />
+<set label="Miguel" value="9" />
+</chart>

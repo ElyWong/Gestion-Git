@@ -1,0 +1,5 @@
+<chart caption="Documentos más pedidos" startinangle="120" showlabels="0" showlegend="1" enablemultislicing="0" slicingdistance="15" showpercentvalues="1" showpercentintooltip="0" theme="zune">
+<set label="Boleta general" value="70" />
+<set label="Constancia de estudios" value="30" />
+<set label="Estado general" value="22" />
+</chart>
