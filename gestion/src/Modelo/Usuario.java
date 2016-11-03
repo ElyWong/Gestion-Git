@@ -2,12 +2,21 @@ package Modelo;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+
+import com.mysql.jdbc.Connection;
 
 import pool.TestPool;
+import listas.Usuarios;
 
 public class Usuario {
 	String usu, pass, correo, newPass;
 	TestPool tp;
+	
+	public Usuario(){
+		tp=new TestPool();
+	}
+	
 	public Usuario(String usuario, String password) {
 		usu=usuario;
 		pass=password;
@@ -123,5 +132,6 @@ public class Usuario {
 		}
 		return r;
 	}
+	
 
 }

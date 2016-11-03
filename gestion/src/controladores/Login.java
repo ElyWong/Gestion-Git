@@ -42,14 +42,16 @@ public class Login extends HttpServlet {
 		usuario=request.getParameter("user");
 		password=request.getParameter("pass");
 		
+		System.out.println("USuario;"+usuario + " | Pass: "+password);
 		Usuario vu = new Usuario(usuario,password);
 		if(vu.verificarExistencia()){
+			System.out.println("existencia true");
 			if(vu.verificarPassword()){
-				System.out.println("contraseña correcta");
+				System.out.println("contraseï¿½a correcta");
 				//all is well
 				if(vu.verificarCorreo()){
 					System.out.println("si tiene correo");
-					//checar qué tipo es
+					//checar quï¿½ tipo es
 					request.getSession().setAttribute("boleta", usuario);
 					switch(vu.verificarTipoUsuario()){
 						case 0:
@@ -83,14 +85,14 @@ public class Login extends HttpServlet {
 					System.out.println("no tiene correo");
 					request.setAttribute("boleta", usuario);
 					request.getRequestDispatcher("registrarCorreo.jsp").forward(request, response);
-					//hacer pantalla para guardar correo y cambiar contraseña
+					//hacer pantalla para guardar correo y cambiar contraseï¿½a
 				}
 			}
 			else{
-				//contraseña incorrecta
+				//contraseï¿½a incorrecta
 				PrintWriter out = response.getWriter();
 				out.println("<script type=\"text/javascript\">");
-				   out.println("alert('Contraseña incorrecta');");
+				   out.println("alert('Contraseï¿½a incorrecta');");
 				   out.println("location='index.jsp';");
 				   out.println("</script>");
 				

@@ -93,9 +93,9 @@
         <!--<a id="logo" class="pull-left" href="index.php"></a>-->
      	<div class="nav-collapse collapse pull-right">
       	<ul class="nav">
-			<li ><a href="#">Gestionar Analistas</a></li>
+			<li ><a href="gestionAnalista.jsp">Gestionar Analistas</a></li>
 			<li ><a href="#">Gestionar Alumnos</a></li>
-			<li ><a href="#">Gestionar Jefes de área</a></li>
+			<li ><a href="gestionJefeArea.jsp">Gestionar Jefes de área</a></li>
             <li class="active"><a href="generarEstadistica.jsp">Generar estadistica</a></li>
 			<li ><a href="index.jsp">Cerrar sesión</a></li>
 	    </ul>     

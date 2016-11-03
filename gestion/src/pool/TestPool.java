@@ -7,6 +7,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -19,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import listas.Usuarios;
+
 
 
 /**
@@ -30,13 +33,29 @@ public class TestPool extends HttpServlet {
 	Connection conn;
 	private int lastColums;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+   
     public TestPool() {
         super(); 
         // TODO Auto-generated constructor stub
     }
+    
+    public Connection getconexion() throws SQLException{
+		Context initContext;
+		DataSource ds;
+		Context envContext;
+		try {
+			initContext = new InitialContext();
+			envContext = (Context)initContext.lookup("java:/comp/env");
+			ds = (DataSource)envContext.lookup("pool1Jdbc/mysqlTest");
+			conn=ds.getConnection();
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println("CORRECTO!!!!!!!!!!!!!!!!!");
+		return conn;
+	}
     
     public ArrayList<String> ejecutar(String consulta) throws SQLException {
 		ResultSet rs = null;
@@ -96,23 +115,7 @@ public class TestPool extends HttpServlet {
         conn.close();
         return tuplas;
 	}
-	public Connection getconexion() throws SQLException{
-		Context initContext;
-		DataSource ds;
-		Context envContext;
-		try {
-			initContext = new InitialContext();
-			envContext = (Context)initContext.lookup("java:/comp/env");
-			ds = (DataSource)envContext.lookup("pool1Jdbc/mysqlTest");
-			conn=ds.getConnection();
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		System.out.println("CORRECTO!!!!!!!!!!!!!!!!!");
-		return conn;
-	}
+	
 
 	public int getLastcolums(){
 		int n=lastColums;
@@ -120,14 +123,78 @@ public class TestPool extends HttpServlet {
 		return n;
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	public List<Usuarios> listaUsuarios(String tipoUsuario) throws SQLException {
+		List <Usuarios> lstUsuarios=null;
+		this.getconexion();
+		
+		String query="select * from usuario where tipo='"+tipoUsuario+"' order by ap";
+		
+		Statement st = conn.createStatement();
+		ResultSet rs = st.executeQuery(query);
+		
+		if (rs.first()) {
+			lstUsuarios = new ArrayList<>();
+
+			do {
+				Usuarios u = new Usuarios();
+				u.setId(rs.getInt("idusuario"));
+				u.setNombre(rs.getString("nombre"));
+				u.setAp(rs.getString("ap"));
+				u.setAm(rs.getString("am"));
+				u.setTipo(rs.getString("tipo"));
+				u.setPass(rs.getString("password"));
+				u.setEmail(rs.getString("email"));
+				
+				lstUsuarios.add(u);
+			} while (rs.next());
+		}
+		
+		return lstUsuarios;
+		
+	}
+	
+	public boolean eliminarUsuario(String idAnalista) {
+		boolean respuesta = false;
+		
+		try {
+			this.getconexion();
+		
+			String query = "delete from usuario where idusuario="+idAnalista;
+		
+			Statement st = conn.createStatement();
+			st.executeUpdate(query);
+			
+			respuesta = true;
+		} catch(SQLException e) {
+			System.err.println("Error al eliminar analista!!!!");
+			e.printStackTrace();
+		}
+		return respuesta;
+	}
+	
+	public boolean agregarUsuario(String idUsuario, String nombre, String ap, String am, String tipo, String password) {
+		boolean respuesta = false;
+		
+		try {
+			this.getconexion();
+			
+			String query = "insert into usuario (idusuario, nombre, ap, am, tipo, password) values ('"
+					+ idUsuario + "','"+nombre+"','"+ap+"','"+am+"','"+tipo+"','"+password+"')";
+			System.out.println("query:"+query);
+			Statement st = conn.createStatement();
+			st.executeUpdate(query);
+			
+			respuesta = true;
+		} catch(SQLException e) {
+			System.err.println("Error al insertar analista!!!");
+			e.printStackTrace();
+		}
+		
+		return respuesta;
+	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		
-		
+
 	}
 
 	/**
