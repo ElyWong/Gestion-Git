@@ -117,7 +117,6 @@ public final class GenerarBitacoraPDF {
         table.addCell(new Paragraph("Estatus", font));
         table.addCell(new Paragraph("Folio", font));
         
-        int i=0;
         while(rs.next()) {
         	table.addCell(rs.getString("Boleta"));
         	table.addCell(rs.getString("Alumno"));

@@ -98,7 +98,7 @@ public class Consultas {
 		return false;
 	}
 	
-	public ResulSet generarReporte(String idAnalista, String fecha) throws SQLException {
+	public ResultSet generarReporte(String idAnalista, String fecha) throws SQLException {
 		String sql = "select s.idAlumno as Boleta, "
 				+ "concat(u.ap,' ',u.am,' ',u.nombre) as Alumno, s.hora as Hora, s.tipoDocumento as Solicitud, "
 				+ "s.status as Estatus, s.folio as Folio from solicitud s, usuario u where "
