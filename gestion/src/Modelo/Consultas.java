@@ -33,7 +33,7 @@ public class Consultas {
 		return q;
 	}
 	
-	public void eliminarTupla(String id) throws SQLException{
+	public void eliminarTupla(String id) throws SQLException {
 		operador.ejecutarSR(queryEliminarNegocio(id));
 	}
 	public String getDatos(String id) throws SQLException{

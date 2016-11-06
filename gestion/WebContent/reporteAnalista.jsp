@@ -126,15 +126,32 @@
   	<!-- Message -->
   <% 
   	String path = request.getContextPath();
-  	path += "/reportes/reporte.pdf";
   %>
   <section class="main-info">
          	<!--<h3>Mensaje del Director</h3>-->
 			<h3 align="center">Generar reporte</h3>
-			<br><br>
+			<br> 	
+			<div class="container-fluid">
+				<form action="reporte" class="form-inline" align="center">
+					<div class="form-group">
+						<input type="submit" class="form-control" value="Generar reporte">
+					</div>
+				</form>
+			</div>
     <div class="container-fluid">
     	<div style="margin:auto;width:80%;height:800px;">
     		<embed src=<%out.println("\""+path+"\"");%> type="application/pdf" height="800" width="100%">
+    	</div>
+    </div>
+    <div class="container-fluid">
+    	<div style="margin:auto;width:80%;height:800px;">
+    		<%
+    			String filename = (String) session.getAttribute("filename");
+    			if(filename != null) {
+    				path += "/reportes/" + filename;
+    				out.print("<embed src=\"" + path + "\" type=\"application/pdf\" height=\"800\" width=\"100%\">");
+    			}
+    		%>
     	</div>
     </div>
  	</section>

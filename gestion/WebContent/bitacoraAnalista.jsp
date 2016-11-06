@@ -134,7 +134,7 @@
 				<input type="date" class="form-control" name="fechaInicial" id="fechaInicial" required="required">
 				<input type="submit" class="form-control" value="Generar bitácora">
 			</div>
-	</form>
+		</form>
 	</div>
     <div class="container-fluid">
     	<div style="margin:auto;width:80%;height:800px;">

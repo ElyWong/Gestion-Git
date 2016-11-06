@@ -43,7 +43,6 @@ public class GenerarBitacoraCtrl extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String fecha = request.getParameter("fechaInicial");
-		//String idAnalista = request.getParameter("boleta");
 		Consultas consulta = new Consultas();
 		try {
 			ResultSet rs = consulta.generarBitacora(fecha);
