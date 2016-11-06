@@ -138,22 +138,17 @@
 					</div>
 				</form>
 			</div>
-    <div class="container-fluid">
-    	<div style="margin:auto;width:80%;height:800px;">
-    		<embed src=<%out.println("\""+path+"\"");%> type="application/pdf" height="800" width="100%">
-    	</div>
-    </div>
-    <div class="container-fluid">
-    	<div style="margin:auto;width:80%;height:800px;">
-    		<%
-    			String filename = (String) session.getAttribute("filename");
-    			if(filename != null) {
-    				path += "/reportes/" + filename;
-    				out.print("<embed src=\"" + path + "\" type=\"application/pdf\" height=\"800\" width=\"100%\">");
-    			}
-    		%>
-    	</div>
-    </div>
+    		<div class="container-fluid">
+    			<div style="margin:auto;width:80%;height:800px;">
+    			<%
+    				String filename = (String) session.getAttribute("filename");
+    				if(filename != null) {
+    					path += "/reportes/" + filename;
+    					out.print("<embed src=\"" + path + "\" type=\"application/pdf\" height=\"800\" width=\"100%\">");
+    				}
+    			%>
+    			</div>
+    		</div>
  	</section>
 	
 <!-- /Message -> 	<!-- /Message ->

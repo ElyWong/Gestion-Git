@@ -98,6 +98,20 @@ public class Consultas {
 		return false;
 	}
 	
+	public ResulSet generarReporte(String idAnalista, String fecha) throws SQLException {
+		String sql = "select s.idAlumno as Boleta, "
+				+ "concat(u.ap,' ',u.am,' ',u.nombre) as Alumno, s.hora as Hora, s.tipoDocumento as Solicitud, "
+				+ "s.status as Estatus, s.folio as Folio from solicitud s, usuario u where "
+				+ "u.idUsuario=s.idAlumno and s.status!='Iniciada' and s.fecha>='" + fecha + "' and s.idAnalista=" + idAnalista + " order by 1, 4;";
+		return operador.ejecutarQuery(sql);
+	}
+	
+	public ArrayList<String> obtenerAnalista(String idAnalista) throws SQLException {
+		String sql = "select concat(ap,' ',am,' ',nombre) as Analista "
+				+ "from usuario where idUsuario=" + idAnalista + ";";
+		return operador.ejecutar(sql);
+	}
+	
 	public ResultSet generarBitacora(String fecha) throws SQLException {
 		String sql = "select s.fecha as Fecha, s.idAlumno as Boleta, "
 				+ "concat(u.ap,' ',u.am,' ',u.nombre) as Alumno, s.hora as Hora, s.tipoDocumento as Solicitud, "
