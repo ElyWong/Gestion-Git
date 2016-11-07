@@ -37,6 +37,7 @@
 		<script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.zune.js"></script>
 		
   <!-- /Scripts for facebook, twitter & youtube -->  
+
 </head>
 
 <body>
@@ -92,10 +93,10 @@
         <!--<a id="logo" class="pull-left" href="index.php"></a>-->
      	<div class="nav-collapse collapse pull-right">
       	<ul class="nav">
-			<li ><a href="gestionAnalista.jsp">Gestionar Jefes de área</a></li>
+			<li ><a href="gestionAnalista.jsp">Gestionar Analistas</a></li>
 			<li ><a href="#">Gestionar Alumnos</a></li>
 			<li ><a href="gestionJefeArea.jsp">Gestionar Jefes de área</a></li>
-            <li ><a href="generarEstadistica.jsp">Generar estadistica</a></li>
+            <li class="active"><a href="generarEstadistica.jsp">Generar estadistica</a></li>
 			<li ><a href="index.jsp">Cerrar sesión</a></li>
 	    </ul>     
       </div><!--/.nav-collapse -->
@@ -105,40 +106,42 @@
 	</section>
 </header>
 <!-- /slider-wrapper -->           
-</section>
 
 <% TestPool tp = new TestPool();
-
+	String email;
 	List<Usuarios> lstJefesArea = tp.listaUsuarios("jefe de area");
 	if (lstJefesArea != null){ %>
 		
 <section class="main-info">
-<h2>Gestionar Analistas.</h2>
-<h3>A continuación se muestra una lista de todos los analistas que se encuentran registrados.</h1>
+<h2>Gestionar Jefes de área.</h2>
+<h3>A continuación se muestra una lista de todos los jefes de área que se encuentran registrados.</h1>
 
 	<table>
-				
 		<thead>
 			<th>Número de usuario</th>
 			<th>Nombre</th>
 			<th>Correo electónico</th>
-					
 		</thead>
 		<tbody>
 			<tr>
 				<%
 					for (Usuarios u : lstJefesArea) {
+						email = u.getEmail();
+						
+						if(email.equals("null") || email.equals("")) {
+							email = "EMAIL NO REGISTRADO";
+						}
 				%>
 				<td><%=u.getId() %> </td>
 				<td><%=u.getNombre() + " " + u.getAp() + " " + u.getAm()%></td>
-				<td><%=u.getEmail()%></td>
+				<td><%=email%></td>
 				<td>
-					<button class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalEdit"
-					onclick="editarAnalista(<%=u.getId()%>)">Editar</button>
-					<button onclick="eliminarAnalista(<%=u.getId() %>)">Eliminar</button>
+				<a class="btn btn-info btn-lg" onclick="modalEditar(); editarJefeArea(<%=u.getId()%>)">Editar</a>
+					
+				<button onclick="eliminarJefeArea(<%=u.getId() %>)">Eliminar</button>
 				</td> 
 			</tr>
-			<%
+			<%					
 				}
 			%>
 		</tbody>
@@ -148,16 +151,15 @@
 	<h2> No se han registrado jefes de área. </h2>
 	<% } %>
 
+<a class="btn btn-info btn-lg" href="#" onClick="modalAgregar();">Agregar</a>
+
 <!--  INICIA CONTAINER AGREGAR  -->
 <div class="container">
 <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Agregar</button>
-
-  
+<!--   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Agregar</button>   -->
   <!-- Modal AGREGAR-->
-  <div class="modal fade" id="myModal" role="dialog">
+  <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-    
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -167,7 +169,7 @@
         <div class="modal-body">
         <table align="center">
         	<tr>
-        	<td><h4>Número de usuario:</h4></td><td> <input type="text" id="idusuario" /> </td>
+        	<td><h4>Número de usuario:</h4></td> <td> <input type="text" id="idusuario" /> </td>
         	</tr>
         	<tr>
           	<td><h4>Nombre:</h4></td><td> <input type="text" id="nombre" /> </td>
@@ -179,7 +181,7 @@
         	<td><h4>Apellido materno:</h4></td> <td> <input type="text" id="am" /> </td>
         	</tr>
         	<tr>
-        	<td><h4>Tipo:</h4></td> <td> <input type="text" id="tipo" value="Analista" disabled /> </td>
+        	<td><h4>Tipo:</h4></td> <td> <input type="text" id="tipo" value="Jefe de área" disabled /> </td>
         	</tr>
         	<tr>
         	<td><h4>Contraseña:</h4></td> <td> <input type="text" id="pass"> </td>
@@ -189,58 +191,62 @@
         	</tr>
         </table>
         </div>
-        <div class="modal-footer" id="modal">
+        <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-          <button type="button" onclick="agregarAnalista()">Agregar</button>
+          <button type="button" onclick="agregarJefeArea()">Agregar</button>
         
         </div>
       </div>
       
     </div>
   </div>
- </div> 
+<!--  </div>  -->
 <!-- TERMINA CONTAINER AGREGAR -->
 
 
 <!--  INICIA CONTAINER EDITAR  -->
-<div class="container">
+<!-- <div class="container"> -->
   
   <!-- Modal EDITAR-->
-  <div class="modal fade" id="modalEdit" role="dialog">
+  <div id="modalEdit" class="modal fade" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h3 class="modal-title">Editar Analista.</h3>
+          <h3 class="modal-title">Editar Jefe de área.</h3>
         </div>
         <div class="modal-body">
-        <table align="center">
-        	<tr>
-        	<td><h4>Número de usuario:</h4></td><td> <input type="text" id="idusuario" /> </td>
-        	</tr>
-        	<tr>
-          	<td><h4>Nombre:</h4></td><td> <input type="text" id="nombre" /> </td>
-          	</tr>
-          	<tr>
-          	<td><h4>Apellido paterno:</h4></td> <td> <input type="text" id="ap" /> </td>
-          	</tr>
-          	<tr>
-        	<td><h4>Apellido materno:</h4></td> <td> <input type="text" id="am" /> </td>
-        	</tr>
-        </table>
+	        <table align="center">
+	        	<tr>
+	        	<td><h4>Número de usuario:</h4></td><td> <input type="text" id="idEditar" disabled /> </td>
+	        	</tr>
+	        	<tr>
+	          	<td><h4>Nombre:</h4></td><td> <input type="text" id="nombreEditar" /> </td>
+	          	</tr>
+	          	<tr>
+	          	<td><h4>Apellido paterno:</h4></td> <td> <input type="text" id="apEditar" /> </td>
+	          	</tr>
+	          	<tr>
+	        	<td><h4>Apellido materno:</h4></td> <td> <input type="text" id="amEditar" /> </td>
+	        	</tr>
+	        	<tr>
+	        	<td><h4>Tipo:</h4></td> <td> <input type="text" id="tipoEditar" disabled /> </td>
+	        	</tr>
+	        </table>
         </div>
-        <div class="modal-footer" id="modal">
+        <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="" onclick="editarAnalista()">Guardar</button>
-        
+          <button type="button" onclick="actualizarJefeArea()">Guardar</button>
         </div>
       </div>
       
     </div>
   </div>
  </div> 
+ 
+ 
 <!-- TERMINA CONTAINER EDITAR -->
 </section>
 

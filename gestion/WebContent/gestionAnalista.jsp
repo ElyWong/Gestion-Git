@@ -108,7 +108,7 @@
 <!-- /slider-wrapper -->           
 
 <% TestPool tp = new TestPool();
-
+	String email;
 	List<Usuarios> lstAnalistas = tp.listaUsuarios("analista");
 	if (lstAnalistas != null){ %>
 		
@@ -128,10 +128,15 @@
 					<tr>
 						<%
 							for (Usuarios u : lstAnalistas) {
+								email = u.getEmail();
+								
+								if(email.equals("null") || email.equals("")) {
+									email = "EMAIL NO REGISTRADO";
+								}
 						%>
 						<td><%=u.getId() %> </td>
 						<td><%=u.getNombre() + " " + u.getAp() + " " + u.getAm()%></td>
-						<td><%=u.getEmail()%></td>
+						<td><%=email%></td>
 						<td>
 							<a class="btn btn-info btn-lg"
 							   onclick="modalEditar(); editarAnalista(<%=u.getId()%>)">Editar</a>
@@ -230,7 +235,7 @@
 	        	<td><h4>Apellido materno:</h4></td> <td> <input type="text" id="amEditar" /> </td>
 	        	</tr>
 	        	<tr>
-	        	<td><h4>Tipo:</h4></td> <td> <input type="text" id="tipoEditar" value="Analista" disabled /> </td>
+	        	<td><h4>Tipo:</h4></td> <td> <input type="text" id="tipoEditar" disabled /> </td>
 	        	</tr>
 	        </table>
         </div>

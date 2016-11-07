@@ -1,6 +1,9 @@
 package controladores;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
+import listas.Usuarios;
 import pool.TestPool;
 
 
@@ -23,6 +29,7 @@ public class gestionJefeArea extends HttpServlet {
 
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
+		tp = new TestPool();
 	}
 
 	public void destroy() {
@@ -52,6 +59,28 @@ public class gestionJefeArea extends HttpServlet {
 			break;
 		
 		case "editar":
+			nombre = request.getParameter("nombre");
+			ap = request.getParameter("ap");
+			am = request.getParameter("am");
+			
+			boolean respEditar = tp.editarUsuario(id,nombre,ap,am);
+			response.getWriter().println(respEditar);
+			break;
+			
+		case "recuperar":
+			List <Usuarios> infoJefeArea = tp.recuperaUsuario(id);
+			
+			if (infoJefeArea != null) {
+				try (PrintWriter out = response.getWriter()) { 
+					String json = new Gson().toJson(infoJefeArea); /* Se convierte A JSON LA LISTA Y se pasa A UN "STRING"*/
+					System.out.println("JSON: " + json);
+
+					out.println(json); /* IMPRIMIMOS ESE STRING */
+				}
+			} else {
+				response.getWriter().print("Jefe de área VACIO");
+			}
+			
 			break;
 			
 		case "eliminar":

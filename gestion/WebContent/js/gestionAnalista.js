@@ -92,18 +92,14 @@ function editarAnalista(idAnalista) {
 				var nombreAnalista = value.nombre;
 				var ap = value.ap;
 				var am = value.am;
+				var tipo = value.tipo;
 			
 				document.getElementById("idEditar").value = id;
 				document.getElementById("nombreEditar").value = nombreAnalista;
 				document.getElementById("apEditar").value = ap;
 				document.getElementById("amEditar").value = am;
-//				var codigo = "<h4>Ubicacion de "+nombrePueblo + "</h4> <br>"
-//					+nombrePueblo + " se encuentra en el estado de "+ estado +
-//					'. <br> Para mas informacion, visita: <a href="' + urlWiki +'">'
-//					+ urlWiki + '</a> <br><br>';
-//				
-//				
-//				document.getElementById('textoPueblo').innerHTML = codigo;
+				document.getElementById("tipoEditar").value = tipo;
+
 			});
 		},
 		error : function(err) {
