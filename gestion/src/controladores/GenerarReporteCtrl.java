@@ -46,7 +46,7 @@ public class GenerarReporteCtrl extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String idAnalista = request.getParameter("boleta");
+		String idAnalista = (String) request.getSession().getAttribute("boleta");
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		String fechaActual = formatter.format(new Date());
 		Consultas consulta = new Consultas();
