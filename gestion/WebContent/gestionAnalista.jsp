@@ -37,6 +37,7 @@
 		<script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.zune.js"></script>
 		
   <!-- /Scripts for facebook, twitter & youtube -->  
+
 </head>
 
 <body>
@@ -105,7 +106,6 @@
 	</section>
 </header>
 <!-- /slider-wrapper -->           
-</section>
 
 <% TestPool tp = new TestPool();
 
@@ -133,8 +133,9 @@
 						<td><%=u.getNombre() + " " + u.getAp() + " " + u.getAm()%></td>
 						<td><%=u.getEmail()%></td>
 						<td>
-							<button class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalEdit"
-							onclick="editarAnalista(<%=u.getId()%>)">Editar</button>
+							<a class="btn btn-info btn-lg"
+							   onclick="modalEditar(); editarAnalista(<%=u.getId()%>)">Editar</a>
+						
 							<button onclick="eliminarAnalista(<%=u.getId() %>)">Eliminar</button>
 						</td> 
 					</tr>
@@ -148,16 +149,15 @@
 	<h2> No se han registrado analistas. </h2>
 	<% } %>
 
+<a class="btn btn-info btn-lg" href="#" onClick="modalAgregar();">Agregar</a>
+
 <!--  INICIA CONTAINER AGREGAR  -->
 <div class="container">
 <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Agregar</button>
-
-  
+<!--   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Agregar</button>   -->
   <!-- Modal AGREGAR-->
-  <div class="modal fade" id="myModal" role="dialog">
+  <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-    
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -167,7 +167,7 @@
         <div class="modal-body">
         <table align="center">
         	<tr>
-        	<td><h4>Número de usuario:</h4></td><td> <input type="text" id="idusuario" /> </td>
+        	<td><h4>Número de usuario:</h4></td> <td> <input type="text" id="idusuario" /> </td>
         	</tr>
         	<tr>
           	<td><h4>Nombre:</h4></td><td> <input type="text" id="nombre" /> </td>
@@ -189,7 +189,7 @@
         	</tr>
         </table>
         </div>
-        <div class="modal-footer" id="modal">
+        <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
           <button type="button" onclick="agregarAnalista()">Agregar</button>
         
@@ -198,15 +198,15 @@
       
     </div>
   </div>
- </div> 
+<!--  </div>  -->
 <!-- TERMINA CONTAINER AGREGAR -->
 
 
 <!--  INICIA CONTAINER EDITAR  -->
-<div class="container">
+<!-- <div class="container"> -->
   
   <!-- Modal EDITAR-->
-  <div class="modal fade" id="modalEdit" role="dialog">
+  <div id="modalEdit" class="modal fade" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
@@ -216,31 +216,35 @@
           <h3 class="modal-title">Editar Analista.</h3>
         </div>
         <div class="modal-body">
-        <table align="center">
-        	<tr>
-        	<td><h4>Número de usuario:</h4></td><td> <input type="text" id="idusuario" /> </td>
-        	</tr>
-        	<tr>
-          	<td><h4>Nombre:</h4></td><td> <input type="text" id="nombre" /> </td>
-          	</tr>
-          	<tr>
-          	<td><h4>Apellido paterno:</h4></td> <td> <input type="text" id="ap" /> </td>
-          	</tr>
-          	<tr>
-        	<td><h4>Apellido materno:</h4></td> <td> <input type="text" id="am" /> </td>
-        	</tr>
-        </table>
+	        <table align="center">
+	        	<tr>
+	        	<td><h4>Número de usuario:</h4></td><td> <input type="text" id="idEditar" disabled /> </td>
+	        	</tr>
+	        	<tr>
+	          	<td><h4>Nombre:</h4></td><td> <input type="text" id="nombreEditar" /> </td>
+	          	</tr>
+	          	<tr>
+	          	<td><h4>Apellido paterno:</h4></td> <td> <input type="text" id="apEditar" /> </td>
+	          	</tr>
+	          	<tr>
+	        	<td><h4>Apellido materno:</h4></td> <td> <input type="text" id="amEditar" /> </td>
+	        	</tr>
+	        	<tr>
+	        	<td><h4>Tipo:</h4></td> <td> <input type="text" id="tipoEditar" value="Analista" disabled /> </td>
+	        	</tr>
+	        </table>
         </div>
-        <div class="modal-footer" id="modal">
+        <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="" onclick="editarAnalista()">Guardar</button>
-        
+          <button type="button" onclick="actualizarAnalista()">Guardar</button>
         </div>
       </div>
       
     </div>
   </div>
  </div> 
+ 
+ 
 <!-- TERMINA CONTAINER EDITAR -->
 </section>
 

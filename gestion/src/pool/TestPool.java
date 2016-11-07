@@ -192,6 +192,64 @@ public class TestPool extends HttpServlet {
 		
 		return respuesta;
 	}
+	
+	public List<Usuarios> recuperaUsuario (String id) {
+		List <Usuarios> infoUsuario = null;
+		
+		try {
+			this.getconexion();
+			
+			String query = "select * from usuario where idusuario='"+id+"'";
+			
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(query);
+			
+			if (rs.first()) {
+				infoUsuario = new ArrayList<>();
+
+				do {
+					Usuarios u = new Usuarios();
+					u.setId(rs.getInt("idusuario"));
+					u.setNombre(rs.getString("nombre"));
+					u.setAp(rs.getString("ap"));
+					u.setAm(rs.getString("am"));
+					u.setTipo(rs.getString("tipo"));
+					u.setPass(rs.getString("password"));
+					u.setEmail(rs.getString("email"));
+					
+					infoUsuario.add(u);
+				} while (rs.next());
+			}
+		} catch (SQLException e) {
+			System.err.println("Error al recuperar analista!!!");
+			e.printStackTrace();
+		}
+		
+		return infoUsuario;
+	}
+	
+	public boolean editarUsuario (String id, String nombre, String ap, String am) {
+		boolean respuesta = false;
+		
+		try {
+			this.getconexion();
+			
+			String query = "update usuario set nombre = '" + nombre + "', ap = '" + ap + "', am = '" 
+					+ am + "' where idusuario='" + id + "'";
+			System.out.println("query:"+query);
+			Statement st = conn.createStatement();
+			st.executeUpdate(query);
+			
+			respuesta = true;
+		} catch(SQLException e) {
+			System.err.println("Error al insertar analista!!!");
+			e.printStackTrace();
+		}
+		
+		return respuesta;		
+	}
+	
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 

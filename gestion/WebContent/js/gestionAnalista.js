@@ -73,6 +73,105 @@ function agregarAnalista(){
 }
 
 function editarAnalista(idAnalista) {
+	var id = idAnalista;
 	
+	$.ajax({
+		type : "POST",
+		url : "./gestionAnalista", //servlet al q se le hara la peticion
+		data : { // clave : valor
+			idAnalista: id,
+			tipo: 'recuperar'
+		},
+	
+		success : function(respuesta) {
+			console.log("Respuesta json:" + respuesta );
+			var arregloAnalista = JSON.parse(respuesta); /* FORZOSAMENTE NECESITAMOS PARSEAR A UN OBJETO (CONVERTIR STRING A JSON )*/
+			
+			$.each(arregloAnalista, function(index, value) { /* ITERAMOS EL ARREGLO DE JSON */
+				id = value.id; /* OBTENEMOS EL NOMBRE */
+				var nombreAnalista = value.nombre;
+				var ap = value.ap;
+				var am = value.am;
+			
+				document.getElementById("idEditar").value = id;
+				document.getElementById("nombreEditar").value = nombreAnalista;
+				document.getElementById("apEditar").value = ap;
+				document.getElementById("amEditar").value = am;
+//				var codigo = "<h4>Ubicacion de "+nombrePueblo + "</h4> <br>"
+//					+nombrePueblo + " se encuentra en el estado de "+ estado +
+//					'. <br> Para mas informacion, visita: <a href="' + urlWiki +'">'
+//					+ urlWiki + '</a> <br><br>';
+//				
+//				
+//				document.getElementById('textoPueblo').innerHTML = codigo;
+			});
+		},
+		error : function(err) {
+			console.error(err);/* EN CASO DE ERROR REVISAR CONSOLA*/
+			alert("ERROR: ERROR al eliminar analista");
+		}
+	});
+}
+
+function actualizarAnalista () {
+	var response = false;
+	var id = document.getElementById("idEditar").value;
+	var nombre = document.getElementById("nombreEditar").value;
+	var ap = document.getElementById("apEditar").value;
+	var am = document.getElementById("amEditar").value;
+	var tipoUsuario = document.getElementById("tipoEditar").value;
+	
+	$.ajax({
+		type : "POST",
+		url : "./gestionAnalista", //servlet al q se le hara la peticion
+		data : { // clave : valor
+			idAnalista: id,
+			tipo: 'editar',
+			nombre : nombre,
+			ap : ap,
+			am : am,
+			tipoUsuario : tipoUsuario
+		},
+	
+		success : function(respuesta) {
+			response = respuesta;
+			console.log("Respuesta actualizar analista:"+respuesta);
+		
+			if (response) {
+				alert("Analista actualizado correctamente");
+				location.reload(true);
+			} else {
+				alert("Error al actualizar analista");
+			}
+		
+		},
+		error : function(err) {
+			console.error(err);/* EN CASO DE ERROR REVISAR CONSOLA*/
+			alert("ERROR: ERROR al actualizar analista");
+		}
+	});
+}
+
+function modalAgregar(){
+	
+	$('#myModal').modal('show');
+	$('#myModal').css( "display", "block" );
+	
+	setTimeout( function(){
+		$('#modalEdit').modal('hide');
+		$('#modalEdit').css( "display", "none" );
+	}, 100);
+	
+}
+
+function modalEditar(){
+	
+	$('#modalEdit').modal('show');
+	$('#modalEdit').css( "display", "block" );
+	
+	setTimeout( function(){
+		$('#myModal').modal('hide');
+		$('#myModal').css( "display", "none" );
+	}, 100);
 	
 }
