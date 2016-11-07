@@ -34,21 +34,21 @@ public final class GenerarBitacoraPDF {
 		String filename = "bitacora";
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		filename += formatter.format(new Date()) + ".pdf";
-		path += "\\reportes\\" + filename;
+		path += "reportes/" + filename;
 		
 		Document document = new Document(PageSize.LETTER.rotate());
 		PdfWriter.getInstance(document, new FileOutputStream(path));
 	    document.open();
 	    
-	    Paragraph titulo = new Paragraph("Bitácora", 
+	    Paragraph titulo = new Paragraph("Bitï¿½cora", 
 	    		FontFactory.getFont("arial", 18, Font.BOLD, BaseColor.BLACK));
 	    
 	    titulo.setAlignment(Element.ALIGN_CENTER);
 	    titulo.setSpacingAfter(25);
 	    titulo.setSpacingBefore(25);
 	    
-	    Paragraph fechaInicio = new Paragraph("Fecha de inicio de bitácora: " + fecha);
-	    Paragraph fechaTermino = new Paragraph("Fecha de término de bitácora: " + formatter.format(new Date()));
+	    Paragraph fechaInicio = new Paragraph("Fecha de inicio de bitï¿½cora: " + fecha);
+	    Paragraph fechaTermino = new Paragraph("Fecha de tï¿½rmino de bitï¿½cora: " + formatter.format(new Date()));
 	    
 	    PdfPTable table = new PdfPTable(8);
 	    Font font = FontFactory.getFont("arial", 12, Font.BOLD, BaseColor.BLACK);
@@ -57,7 +57,7 @@ public final class GenerarBitacoraPDF {
         table.addCell(new Paragraph("Boleta", font));
         table.addCell(new Paragraph("Alumno", font));
         table.addCell(new Paragraph("Hora", font));
-        table.addCell(new Paragraph("Trámite", font));
+        table.addCell(new Paragraph("Trï¿½mite", font));
         table.addCell(new Paragraph("Analista", font));
         table.addCell(new Paragraph("Estatus", font));
         table.addCell(new Paragraph("Folio", font));
@@ -91,7 +91,9 @@ public final class GenerarBitacoraPDF {
 	public static String crearReporte(ResultSet rs, ArrayList<String> analistas, String path, String fecha, String idAnalista) throws FileNotFoundException, DocumentException, SQLException {
 		String filename = "reporte_";
 		filename += idAnalista + "_" + fecha + ".pdf";
-		path += "\\reportes\\" + filename;
+		path += "reportes/" + filename;
+		
+		System.out.println("path " + path);
 		
 		Document document = new Document(PageSize.LETTER.rotate());
 		PdfWriter.getInstance(document, new FileOutputStream(path));
@@ -113,7 +115,7 @@ public final class GenerarBitacoraPDF {
         table.addCell(new Paragraph("Boleta", font));
         table.addCell(new Paragraph("Alumno", font));
         table.addCell(new Paragraph("Hora", font));
-        table.addCell(new Paragraph("Trámite", font));
+        table.addCell(new Paragraph("Trï¿½mite", font));
         table.addCell(new Paragraph("Estatus", font));
         table.addCell(new Paragraph("Folio", font));
         
