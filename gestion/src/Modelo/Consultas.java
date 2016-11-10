@@ -114,8 +114,8 @@ public class Consultas {
 	
 	public ResultSet generarBitacora(String fecha) throws SQLException {
 		String sql = "select s.fecha as Fecha, s.idAlumno as Boleta, "
-				+ "concat(u.ap,' ',u.am,' ',u.nombre) as Alumno, s.hora as Hora, s.tipoDocumento as Solicitud, "
-				+ "s.status as Estatus, s.folio as Folio from solicitud s, usuario u where "
+				+ "concat(u.ap,' ',u.am,' ',u.nombre) as Alumno, s.horaImpresion as Impresion, s.tipoDocumento as Solicitud, "
+				+ "s.status as Estatus, s.folio as Folio, s.horaEntrega as Entrega, s.idAnalista2 as Analista from solicitud s, usuario u where "
 				+ "u.idUsuario=s.idAlumno and s.status!='Iniciada' and s.fecha>='" + fecha + "' order by 1, 4;";
 		return operador.ejecutarQuery(sql);
 	}
@@ -123,8 +123,15 @@ public class Consultas {
 	public ArrayList<String> obtenerAnalistas(String fecha) throws SQLException {
 		String sql = "select concat(u.ap,' ',u.am,' ',u.nombre) as Analista "
 				+ "from solicitud s, usuario u where u.idUsuario=s.idAnalista "
-				+ "and s.fecha>='" + fecha + "' order by s.fecha, s.hora;";
+				+ "and s.fecha>='" + fecha + "' order by s.fecha, s.horaImpresion;";
 		return operador.ejecutar(sql);
+	}
+	
+	public ResultSet obtenerAnalistaEntrega(String idAnalista) throws SQLException {
+		String sql = "select concat(u.ap,' ',u.am,' ',u.nombre) as Analista "
+				+ "from solicitud s, usuario u where u.idUsuario=s.idAnalista2 "
+				+ "and s.idAnalista2>=" + idAnalista + ";";
+		return operador.ejecutarQuery(sql);
 	}
 
 }
