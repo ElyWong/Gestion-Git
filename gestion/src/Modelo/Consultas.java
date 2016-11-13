@@ -100,9 +100,9 @@ public class Consultas {
 	
 	public ResultSet generarReporte(String idAnalista, String fecha) throws SQLException {
 		String sql = "select s.idAlumno as Boleta, "
-				+ "concat(u.ap,' ',u.am,' ',u.nombre) as Alumno, s.hora as Hora, s.tipoDocumento as Solicitud, "
-				+ "s.status as Estatus, s.folio as Folio from solicitud s, usuario u where "
-				+ "u.idUsuario=s.idAlumno and s.status!='Iniciada' and s.fecha>='" + fecha + "' and s.idAnalista=" + idAnalista + " order by 1, 4;";
+				+ "concat(u.ap,' ',u.am,' ',u.nombre) as Alumno, s.horaImpresion as Impresion, s.tipoDocumento as Solicitud, "
+				+ "s.status as Estatus, s.folio as Folio, s.horaEntrega as Entrega, s.idAnalista2 as AnalistaE, s.idAnalista as AnalistaI from solicitud s, usuario u where "
+				+ "u.idUsuario=s.idAlumno and s.status!='Iniciada' and s.fecha='" + fecha + "' and (s.idAnalista=" + idAnalista + " or s.idAnalista2=" + idAnalista + ") order by 1, 4;";
 		return operador.ejecutarQuery(sql);
 	}
 	
@@ -133,5 +133,4 @@ public class Consultas {
 				+ "and s.idAnalista2>=" + idAnalista + ";";
 		return operador.ejecutarQuery(sql);
 	}
-
 }
