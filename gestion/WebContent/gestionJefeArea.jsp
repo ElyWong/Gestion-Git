@@ -143,9 +143,9 @@
 							<td><%=email%></td>
 							<td>
 								<a class="btn btn-info btn-lg"
-								   onclick="modalEditar(); editarAnalista(<%=u.getId()%>)">Editar</a>
+								   onclick="modalEditar(); editarJefeArea(<%=u.getId()%>)">Editar</a>
 							
-								<button onclick="eliminarAnalista(<%=u.getId() %>)">Eliminar</button>
+								<button onclick="eliminarJefeArea(<%=u.getId() %>)">Eliminar</button>
 							</td> 
 						</tr>
 						<%
