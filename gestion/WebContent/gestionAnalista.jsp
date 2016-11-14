@@ -19,6 +19,7 @@
   <meta name="viewport" content="width=device-width">
 	 
 	<link rel="icon" href="images/icon.png" />
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
   <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -116,7 +117,7 @@
 <h2>Gestionar Analistas.</h2>
 <h3>A continuación se muestra una lista de todos los analistas que se encuentran registrados.</h1>
 
-	<table>
+	<table class="pure-table">
 				
 				<thead>
 					<th>Número de usuario</th>
@@ -125,27 +126,49 @@
 					
 				</thead>
 				<tbody>
-					<tr>
-						<%
-							for (Usuarios u : lstAnalistas) {
-								email = u.getEmail();
-								
-								if(email.equals("null") || email.equals("")) {
-									email = "EMAIL NO REGISTRADO";
-								}
-						%>
-						<td><%=u.getId() %> </td>
-						<td><%=u.getNombre() + " " + u.getAp() + " " + u.getAm()%></td>
-						<td><%=email%></td>
-						<td>
-							<a class="btn btn-info btn-lg"
-							   onclick="modalEditar(); editarAnalista(<%=u.getId()%>)">Editar</a>
-						
-							<button onclick="eliminarAnalista(<%=u.getId() %>)">Eliminar</button>
-						</td> 
-					</tr>
 					<%
+					int i = 0;
+						for (Usuarios u : lstAnalistas) {
+							email = u.getEmail();
+							
+							if(email.equals("null") || email.equals("")) {
+								email = "EMAIL NO REGISTRADO";
+							}
+							if(i%2 == 0)
+							{
+					%>
+						<tr>
+							<td><%=u.getId() %></td>
+							<td><%=u.getNombre() + " " + u.getAp() + " " + u.getAm()%></td>
+							<td><%=email%></td>
+							<td>
+								<a class="btn btn-info btn-lg"
+								   onclick="modalEditar(); editarAnalista(<%=u.getId()%>)">Editar</a>
+							
+								<button onclick="eliminarAnalista(<%=u.getId() %>)">Eliminar</button>
+							</td> 
+						</tr>
+						<%
+							}
+							else
+							{
+						%>
+						<tr class="pure-table-odd">
+							<td><%=u.getId() %></td>
+							<td><%=u.getNombre() + " " + u.getAp() + " " + u.getAm()%></td>
+							<td><%=email%></td>
+							<td>
+								<a class="btn btn-info btn-lg"
+								   onclick="modalEditar(); editarAnalista(<%=u.getId()%>)">Editar</a>
+							
+								<button onclick="eliminarAnalista(<%=u.getId() %>)">Eliminar</button>
+							</td> 
+						</tr>
+						<%
 						}
+					%>
+					<%
+						i++;}
 					%>
 				</tbody>
 			</table>
