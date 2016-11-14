@@ -133,4 +133,37 @@ public class Consultas {
 				+ "and s.idAnalista2>=" + idAnalista + ";";
 		return operador.ejecutarQuery(sql);
 	}
+	
+	public ResultSet listarEstudiantes() throws SQLException {
+		String sql = "select u.idUsuario as Boleta, u.ap as Paterno, u.am as Materno, u.nombre as Nombre, "
+				+ "u.email as Correo, a.status as Estatus "
+				+ "from usuario u, alumno a "
+				+ "where a.boleta=u.idUsuario;";
+		return operador.ejecutarQuery(sql);
+	}
+	
+	public void eliminarAlumno(Integer boleta) throws SQLException {
+		String sql = "delete from usuario where idUsuario=" + boleta + ";";
+		operador.ejecutarSR(sql);
+	}
+	
+	public void modificarAlumno(Integer boleta, String nombre, String apPaterno, 
+			String apMaterno, String email, String estatus) throws SQLException {
+		String sql = "update usuario set nombre='" + nombre + "', ap='" + apPaterno + 
+				"', am='" + apMaterno + "', email='" + email + "' where idUsuario=" + boleta + ";" ;
+		operador.ejecutarSR(sql);
+		sql = "update alumno set status='" + estatus + "' where boleta=" + boleta + ";";
+		operador.ejecutarSR(sql);
+	}
+	
+	public void insertarAlumno(Integer boleta, String nombre, String apPaterno, 
+			String apMaterno, String email, String estatus) throws SQLException {
+		String sql = "insert into usuario(idUsuario, tipo, password, nombre, ap, am, email) "
+				+ "values(" + boleta + ", 'alumno', '" + apPaterno.toUpperCase() + "', "
+						+ "'" + nombre + "', '" + apPaterno + "', '" + apMaterno + "', '" + email + "');";
+		operador.ejecutarSR(sql);
+		sql = "insert into alumno(boleta, status) values(" + boleta +  ", '" + estatus +  "');";
+		operador.ejecutarSR(sql);
+	}
+	
 }
