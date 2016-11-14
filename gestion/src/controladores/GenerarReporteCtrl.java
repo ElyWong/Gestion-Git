@@ -54,7 +54,7 @@ public class GenerarReporteCtrl extends HttpServlet {
 			ResultSet rs = consulta.generarReporte(idAnalista, fechaActual);
 			ArrayList<String> analistas = consulta.obtenerAnalista(idAnalista);
 			String filename = GenerarBitacoraPDF.crearReporte(rs, analistas, path, fechaActual, idAnalista);
-			request.getSession().setAttribute("filename", filename);
+			request.getSession().setAttribute("reporte", filename);
 			response.sendRedirect("reporteAnalista.jsp");
 		} catch (SQLException e) {
 			e.printStackTrace();
