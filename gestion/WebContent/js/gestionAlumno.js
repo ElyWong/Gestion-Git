@@ -7,7 +7,7 @@ $(function() {
 		limpiarFormulario();
 	});
 	
-	$("tr").click(function () {
+	$("tbody tr").click(function () {
 		var tdArray = $(this).children();
 		$("#boleta").val(tdArray[0].innerHTML);
 		$("#nombre").val(tdArray[3].innerHTML);
