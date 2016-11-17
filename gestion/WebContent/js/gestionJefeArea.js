@@ -147,11 +147,17 @@ function actualizarJefeArea () {
 	});
 }
 
+function esconderModales() {
+	$('#modalEdit').css( "display", "none" );
+	$('#myModal').css( "display", "none" );
+}
+
+
 function modalAgregar(){
 	
-	$('#myModal').modal('show');
 	$('#myModal').css( "display", "block" );
-	
+	$('#myModal').modal('show');
+
 	setTimeout( function(){
 		$('#modalEdit').modal('hide');
 		$('#modalEdit').css( "display", "none" );
@@ -161,8 +167,8 @@ function modalAgregar(){
 
 function modalEditar(){
 	
-	$('#modalEdit').modal('show');
 	$('#modalEdit').css( "display", "block" );
+	$('#modalEdit').modal('show');
 	
 	setTimeout( function(){
 		$('#myModal').modal('hide');
