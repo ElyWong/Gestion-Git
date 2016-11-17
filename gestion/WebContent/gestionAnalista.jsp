@@ -41,7 +41,7 @@
 
 </head>
 
-<body>
+<body onload="esconderModales()">
 <section class="fondoBlanco">
 	<div id="areaTrabajo">
     <div class="container">
@@ -139,7 +139,7 @@
 					%>
 						<tr>
 							<td><%=u.getId() %></td>
-							<td><%=u.getNombre() + " " + u.getAp() + " " + u.getAm()%></td>
+							<td><%=u.getNombre()%></td>
 							<td><%=email%></td>
 							<td>
 								<a class="btn btn-info btn-lg"
@@ -155,7 +155,7 @@
 						%>
 						<tr class="pure-table-odd">
 							<td><%=u.getId() %></td>
-							<td><%=u.getNombre() + " " + u.getAp() + " " + u.getAm()%></td>
+							<td><%=u.getNombre()%></td>
 							<td><%=email%></td>
 							<td>
 								<a class="btn btn-info btn-lg"
@@ -198,14 +198,9 @@
         	<td><h4>Número de usuario:</h4></td> <td> <input type="text" id="idusuario" /> </td>
         	</tr>
         	<tr>
-          	<td><h4>Nombre:</h4></td><td> <input type="text" id="nombre" /> </td>
+          	<td><h4>Nombre completo:</h4></td><td> <input type="text" id="nombre" /> </td>
           	</tr>
-          	<tr>
-          	<td><h4>Apellido paterno:</h4></td> <td> <input type="text" id="ap" /> </td>
-          	</tr>
-          	<tr>
-        	<td><h4>Apellido materno:</h4></td> <td> <input type="text" id="am" /> </td>
-        	</tr>
+          	
         	<tr>
         	<td><h4>Tipo:</h4></td> <td> <input type="text" id="tipo" value="Analista" disabled /> </td>
         	</tr>
@@ -252,12 +247,6 @@
 	          	<td><h4>Nombre:</h4></td><td> <input type="text" id="nombreEditar" /> </td>
 	          	</tr>
 	          	<tr>
-	          	<td><h4>Apellido paterno:</h4></td> <td> <input type="text" id="apEditar" /> </td>
-	          	</tr>
-	          	<tr>
-	        	<td><h4>Apellido materno:</h4></td> <td> <input type="text" id="amEditar" /> </td>
-	        	</tr>
-	        	<tr>
 	        	<td><h4>Tipo:</h4></td> <td> <input type="text" id="tipoEditar" disabled /> </td>
 	        	</tr>
 	        </table>
