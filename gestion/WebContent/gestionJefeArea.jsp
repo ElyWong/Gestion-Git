@@ -41,7 +41,7 @@
 
 </head>
 
-<body onload="esconderModales()">
+<body>
 <section class="fondoBlanco">
 	<div id="areaTrabajo">
     <div class="container">
@@ -139,7 +139,7 @@
 					%>
 						<tr>
 							<td><%=u.getId() %></td>
-							<td><%=u.getNombre() %></td>
+							<td><%=u.getNombre() + " " + u.getAp() + " " + u.getAm()%></td>
 							<td><%=email%></td>
 							<td>
 								<a class="btn btn-info btn-lg"
@@ -155,13 +155,13 @@
 						%>
 						<tr class="pure-table-odd">
 							<td><%=u.getId() %></td>
-							<td><%=u.getNombre() %></td>
+							<td><%=u.getNombre() + " " + u.getAp() + " " + u.getAm()%></td>
 							<td><%=email%></td>
 							<td>
 								<a class="btn btn-info btn-lg"
-								   onclick="modalEditar(); editarJefeArea(<%=u.getId()%>)">Editar</a>
+								   onclick="modalEditar(); editarAnalista(<%=u.getId()%>)">Editar</a>
 							
-								<button onclick="eliminarJefeArea(<%=u.getId() %>)">Eliminar</button>
+								<button onclick="eliminarAnalista(<%=u.getId() %>)">Eliminar</button>
 							</td> 
 						</tr>
 						<%
@@ -201,6 +201,12 @@
           	<td><h4>Nombre:</h4></td><td> <input type="text" id="nombre" /> </td>
           	</tr>
           	<tr>
+          	<td><h4>Apellido paterno:</h4></td> <td> <input type="text" id="ap" /> </td>
+          	</tr>
+          	<tr>
+        	<td><h4>Apellido materno:</h4></td> <td> <input type="text" id="am" /> </td>
+        	</tr>
+        	<tr>
         	<td><h4>Tipo:</h4></td> <td> <input type="text" id="tipo" value="Jefe de área" disabled /> </td>
         	</tr>
         	<tr>
@@ -246,6 +252,12 @@
 	          	<td><h4>Nombre:</h4></td><td> <input type="text" id="nombreEditar" /> </td>
 	          	</tr>
 	          	<tr>
+	          	<td><h4>Apellido paterno:</h4></td> <td> <input type="text" id="apEditar" /> </td>
+	          	</tr>
+	          	<tr>
+	        	<td><h4>Apellido materno:</h4></td> <td> <input type="text" id="amEditar" /> </td>
+	        	</tr>
+	        	<tr>
 	        	<td><h4>Tipo:</h4></td> <td> <input type="text" id="tipoEditar" disabled /> </td>
 	        	</tr>
 	        </table>

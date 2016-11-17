@@ -1,13 +1,18 @@
 package listas;
 
 public class Usuarios {
-	String nombre, tipo, email, pass;
+	String nombre, ap, am,tipo, email, pass;
 	int id;
 	
 	public String getNombre() {
 		return nombre;
 	}
-	
+	public String getAp() {
+		return ap;
+	}
+	public String getAm() {
+		return am;
+	}
 	public String getTipo() {
 		return tipo;
 	}
@@ -23,7 +28,12 @@ public class Usuarios {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+	public void setAp(String ap) {
+		this.ap = ap;
+	}
+	public void setAm(String am) {
+		this.am = am;
+	}
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}

@@ -34,6 +34,8 @@ function agregarAnalista(){
 	var response = false;
 	var id = document.getElementById("idusuario").value;
 	var nombre = document.getElementById("nombre").value;
+	var ap = document.getElementById("ap").value;
+	var am = document.getElementById("am").value;
 	var tipoUsuario = document.getElementById("tipo").value;
 	var pass = document.getElementById("pass").value;
 	
@@ -88,10 +90,14 @@ function editarAnalista(idAnalista) {
 			$.each(arregloAnalista, function(index, value) { /* ITERAMOS EL ARREGLO DE JSON */
 				id = value.id; /* OBTENEMOS EL NOMBRE */
 				var nombreAnalista = value.nombre;
+				var ap = value.ap;
+				var am = value.am;
 				var tipo = value.tipo;
 			
 				document.getElementById("idEditar").value = id;
 				document.getElementById("nombreEditar").value = nombreAnalista;
+				document.getElementById("apEditar").value = ap;
+				document.getElementById("amEditar").value = am;
 				document.getElementById("tipoEditar").value = tipo;
 
 			});
@@ -142,17 +148,11 @@ function actualizarAnalista () {
 	});
 }
 
-function esconderModales() {
-	$('#modalEdit').css( "display", "none" );
-	$('#myModal').css( "display", "none" );
-}
-
-
 function modalAgregar(){
 	
-	$('#myModal').css( "display", "block" );
 	$('#myModal').modal('show');
-
+	$('#myModal').css( "display", "block" );
+	
 	setTimeout( function(){
 		$('#modalEdit').modal('hide');
 		$('#modalEdit').css( "display", "none" );
@@ -162,8 +162,8 @@ function modalAgregar(){
 
 function modalEditar(){
 	
-	$('#modalEdit').css( "display", "block" );
 	$('#modalEdit').modal('show');
+	$('#modalEdit').css( "display", "block" );
 	
 	setTimeout( function(){
 		$('#myModal').modal('hide');

@@ -127,7 +127,7 @@ public class TestPool extends HttpServlet {
 		List <Usuarios> lstUsuarios=null;
 		this.getconexion();
 		
-		String query="select * from usuario where tipo='"+tipoUsuario+"' order by nombre";
+		String query="select * from usuario where tipo='"+tipoUsuario+"' order by ap";
 		
 		Statement st = conn.createStatement();
 		ResultSet rs = st.executeQuery(query);
@@ -139,6 +139,8 @@ public class TestPool extends HttpServlet {
 				Usuarios u = new Usuarios();
 				u.setId(rs.getInt("idusuario"));
 				u.setNombre(rs.getString("nombre"));
+				u.setAp(rs.getString("ap"));
+				u.setAm(rs.getString("am"));
 				u.setTipo(rs.getString("tipo"));
 				u.setPass(rs.getString("password"));
 				u.setEmail(rs.getString("email"));
@@ -170,14 +172,14 @@ public class TestPool extends HttpServlet {
 		return respuesta;
 	}
 	
-	public boolean agregarUsuario(String idUsuario, String nombre, String tipo, String password) {
+	public boolean agregarUsuario(String idUsuario, String nombre, String ap, String am, String tipo, String password) {
 		boolean respuesta = false;
 		
 		try {
 			this.getconexion();
 			
 			String query = "insert into usuario (idusuario, nombre, ap, am, tipo, password) values ('"
-					+ idUsuario + "','"+nombre+"','"+tipo+"','"+password+"')";
+					+ idUsuario + "','"+nombre+"','"+ap+"','"+am+"','"+tipo+"','"+password+"')";
 			System.out.println("query:"+query);
 			Statement st = conn.createStatement();
 			st.executeUpdate(query);
@@ -209,6 +211,8 @@ public class TestPool extends HttpServlet {
 					Usuarios u = new Usuarios();
 					u.setId(rs.getInt("idusuario"));
 					u.setNombre(rs.getString("nombre"));
+					u.setAp(rs.getString("ap"));
+					u.setAm(rs.getString("am"));
 					u.setTipo(rs.getString("tipo"));
 					u.setPass(rs.getString("password"));
 					u.setEmail(rs.getString("email"));
@@ -224,13 +228,14 @@ public class TestPool extends HttpServlet {
 		return infoUsuario;
 	}
 	
-	public boolean editarUsuario (String id, String nombre) {
+	public boolean editarUsuario (String id, String nombre, String ap, String am) {
 		boolean respuesta = false;
 		
 		try {
 			this.getconexion();
 			
-			String query = "update usuario set nombre = '" + nombre + "', where idusuario='" + id + "'";
+			String query = "update usuario set nombre = '" + nombre + "', ap = '" + ap + "', am = '" 
+					+ am + "' where idusuario='" + id + "'";
 			System.out.println("query:"+query);
 			Statement st = conn.createStatement();
 			st.executeUpdate(query);
