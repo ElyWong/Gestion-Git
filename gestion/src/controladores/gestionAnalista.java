@@ -48,22 +48,26 @@ public class gestionAnalista extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String tipoOperacion = request.getParameter("tipo");
 		String id = request.getParameter("idAnalista");
-		String nombre,pass,tipoUsuario;
+		String nombre,ap,am,pass,tipoUsuario;
 		
 		switch(tipoOperacion) {
 		case "agregar":
 			nombre = request.getParameter("nombre");
+			ap = request.getParameter("ap");
+			am = request.getParameter("am");
 			pass = request.getParameter("pass");
 			tipoUsuario = request.getParameter("tipoUsuario");
 			
-			boolean respAgregar = tp.agregarUsuario(id,nombre,tipoUsuario,pass);
+			boolean respAgregar = tp.agregarUsuario(id,nombre,ap,am,tipoUsuario,pass);
 			response.getWriter().println(respAgregar);
 			break;
 		
 		case "editar":
 			nombre = request.getParameter("nombre");
+			ap = request.getParameter("ap");
+			am = request.getParameter("am");
 			
-			boolean respEditar = tp.editarUsuario(id,nombre);
+			boolean respEditar = tp.editarUsuario(id,nombre,ap,am);
 			response.getWriter().println(respEditar);
 			break;
 			
