@@ -22,17 +22,79 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/sl-slide.css">
   <link rel="stylesheet" href="css/lazyYT.css"><!-- Agregado el 190515 para el funcionomiento de youtube -->
-  
-  <script src="js/vendor/jquery-1.9.1.min.js"></script>
   <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
   <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/jquery.min.js"></script>
 	<script src="js/main.js"></script>
-     
-        <script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
-        <script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.charts.js"></script>
-        <script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.ocean.js"></script>
-		<script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.zune.js"></script>
-		
+	
+<script type="text/javascript">
+$(document).ready(function(){
+ $("#principal").change(function() {
+    if ($(this).val() == 'a') {
+      $("#tipodoc").show();
+      $("#estadodoc").show();
+      $("#motivodoc").hide();
+      $("#tipousu").hide();
+      $("#nomanalista").hide();
+      $("#nivelalu").hide();
+      $("#1").show();
+      $("#2").show();
+      $("#3").hide();
+      $("#4").hide();
+      $("#5").hide();
+      $("#6").hide();
+      $("#tipousu").attr('required', false);
+    } else if ($(this).val() == 'b'){
+   $("#tipodoc").show();
+   $("#estadodoc").hide();
+   $("#motivodoc").show();
+   $("#tipousu").hide();
+   $("#nomanalista").hide();
+   $("#nivelalu").hide();
+   $("#1").show();
+   $("#2").hide();
+   $("#3").show();
+   $("#4").hide();
+   $("#5").hide();
+   $("#6").hide();
+   $("#tipousu").attr('required', false);
+    }
+    else if ($(this).val() == 'c'){
+   $("#tipodoc").show();
+   $("#estadodoc").hide();
+   $("#motivodoc").show();
+   $("#tipousu").show();
+   $("#nomanalista").hide();
+   $("#nivelalu").hide();
+   $("#1").show();
+   $("#2").hide();
+   $("#3").show();
+   $("#4").show();
+   $("#5").hide();
+   $("#6").hide();
+   $("#tipousu").attr('required', true);
+    }
+  });
+});
+ </script>
+ <script type="text/javascript">
+$(document).ready(function(){
+ $("#tipousu").change(function() {
+  if ($(this).val() == 1) {
+      $("#nomanalista").show();
+      $("#nivelalu").hide();
+      $("#5").show();
+      $("#6").hide();
+    } 
+  else if ($(this).val() == 2){
+	   $("#nomanalista").hide();
+	   $("#nivelalu").show();
+	   $("#5").hide();
+	   $("#6").show();
+    }
+  });
+});
+ </script>
   <!-- /Scripts for facebook, twitter & youtube -->  
 </head>
 
@@ -94,10 +156,10 @@
      	<div class="nav-collapse collapse pull-right">
       	<ul class="nav">
 			<li ><a href="gestionAnalista.jsp">Gestionar Analistas</a></li>
-			<li ><a href="gestionAlumno.jsp">Gestionar Alumnos</a></li>
+			<li ><a href="#">Gestionar Alumnos</a></li>
 			<li ><a href="gestionJefeArea.jsp">Gestionar Jefes de área</a></li>
             <li class="active"><a href="generarEstadistica.jsp">Generar estadistica</a></li>
-			<li ><a href="logout">Cerrar sesión</a></li>
+			<li ><a href="index.jsp">Cerrar sesión</a></li>
 	    </ul>     
       </div><!--/.nav-collapse -->
      	</div>
@@ -115,13 +177,6 @@
       
     </div>
     <!--/Slider Items-->
-    
-    <!--Slider Next Prev button-->
-    <nav id="nav-arrows" class="nav-arrows">
-        <span class="nav-arrow-prev"><i class="icon-angle-left"></i></span>
-        <span class="nav-arrow-next"><i class="icon-angle-right"></i></span> 
-    </nav>
-    <!--/Slider Next Prev button-->
 
 </div>
 <!-- /slider-wrapper -->           
@@ -131,27 +186,78 @@
   	<!-- Message -->
   <section class="main-info">
          	<!--<h3>Mensaje del Director</h3>-->
-			<form action="ActualizarGraficas" method="post" align="center">
-            <input type="submit" class="special" value="Actualizar gráficas">
-          </form> 
-			<br><br>
-		<table align="center">
-			<tr>
-				<th>
-					<div id="chart1"></div>
-				</th>
-				<th>
-					<div id="chart2"></div>
-				</th>
-			</tr>
-			<tr>
-				<td colspan="2"	align="center">
-					 <div id="chart3"></div>
-				</td>
-				
-			</tr>
-		</table>
-			<%@page import="FusionCharts.FusionCharts" %>
+    <form action="ObtenerDatos" method="post" align="center">
+          <p>Fecha de inicio: <input type="date" name="fecha1" required/></p>
+    		<p>Fecha final: <input type="date" name="fecha2" required/></p>
+     		<p>Criterio principal:</p>
+             <select name="principal" id="principal" required>
+			   <option disabled selected value></option>
+               <option value="a">Por tipo de documento</option>
+               <option value="b">Por motivo de documento</option>
+               <option value="c">Por tipo de usuario</option>
+             </select><br><br>
+    &nbsp; &nbsp;
+             <p id="1" style="display: none;">Selecciona el tipo de documento:</p>
+             <select name="tipodoc" id="tipodoc" style="display: none;">
+               <option disabled selected value></option>
+               <option value="todos">Todos</option>
+               <option value="Boleta global">Boleta global</option>
+               <option value="Boleta cetrificada">Boleta cetrificada</option>
+               <option value="Constancia de inscripción">Constancia de inscripción</option>
+               <option value="Constancia de estudios">Constancia de estudios</option>
+               <option value="Constancia de periodo vacacional">Constancia de periodo vacacional</option>
+               <option value="Constancia para trámite de servicio social">Constancia para trámite de servicio social</option>
+             </select><br><br>
+             <p id ="2" style="display: none;">Selecciona el estado de los documentos a visualizar:</p>
+             <select name="estadodoc" id="estadodoc" style="display: none;">
+               <option disabled selected value></option>
+               <option value="todos">Todos</option>
+               <option value="Iniciada">Iniciada</option>
+               <option value="Impresa">Impresa</option>
+               <option value="En firma">En firma</option>
+               <option value="Lista">Lista</option>
+               <option value="Entregada">Entregada</option>
+             </select><br><br>
+             <p id ="3" style="display: none;">Selecciona el motivo de los documentos:</p>
+             <select name="motivodoc" id="motivodoc" style="display: none;">
+               <option disabled selected value></option>
+               <option value="todos">Todos</option>
+               <option value="Beca Externa">Beca Externa</option>
+               <option value="Movilidad">Movilidad</option>
+               <option value="Padres">Padres</option>
+               <option value="Ninguno">Ninguno</option>
+               <option value="Otro">Otro</option>
+             </select><br><br>
+             <p id ="4" style="display: none;">Selecciona el tipo de usuario:</p><br>
+             <select name="tipousu" id="tipousu" style="display: none;">
+               <option disabled selected value></option>
+               <option value="1">Analista</option>
+               <option value="2">Alumno</option>
+             </select><br><br>
+             <p id ="5" style="display: none;">Selecciona el nombre del analista:</p>
+             <select name="nomanalista" id="nomanalista" style="display: none;">
+               <option disabled selected value></option>
+               <option value="todos">Todos</option>
+               <option value="200">Olivia</option>
+               <option value="201">Gina</option>
+               <option value="202">Rigoberto</option>
+               <option value="203">Eduardo</option>
+               <option value="204">Miguel</option>
+             </select><br><br>
+             <p id ="6" style="display: none;">Selecciona el nivel de los alumnos:</p>
+             <select name="nivelalu" id="nivelalu" style="display: none;">
+               <option disabled selected value></option>
+               <option value="todos">Todos</option>
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">5</option>
+             </select><br><br>
+   
+            <input type="submit" class="special" value="Obtener datos">
+            
+          </form><br><br>
  	</section>
  	
      
@@ -159,37 +265,7 @@
 </body>
 
 	<!-- Required javascript files for Slider -->
-	<% 
-
-            FusionCharts lineChart1 = new FusionCharts(
-                        "pie3d",// chartType
-                        "ex1",// chartId
-                        "600", "400",// chartWidth, chartHeight
-                        "chart1",// chartContainer
-                        "xmlurl",// dataFormat
-                        "data/dataTipoDocumento.xml"
-                    );
-        	FusionCharts lineChart2 = new FusionCharts(
-		                "pie3d",// chartType
-		                "ex2",// chartId
-		                "600", "400",// chartWidth, chartHeight
-		                "chart2",// chartContainer
-		                "xmlurl",// dataFormat
-		                "data/dataMotivo.xml"
-	            	);
-        	FusionCharts lineChart3 = new FusionCharts(
-		                "column2d",// chartType
-		                "ex3",// chartId
-		                "600", "400",// chartWidth, chartHeight
-		                "chart3",// chartContainer
-		                "xmlurl",// dataFormat
-		                "data/dataTrabajos.xml"
-		            );
-        %>
-<!--    Step 5: Render the chart    -->  
-        <%=lineChart1.render()%>
-        <%=lineChart2.render()%>
-        <%=lineChart3.render()%>
+	
 	<script src="js/jquery.ba-cond.min.js"></script>
 	<script src="js/jquery.slitslider.js"></script>
   <script src="js/slider.js"></script>
