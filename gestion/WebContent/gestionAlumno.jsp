@@ -108,7 +108,7 @@
 <section class="main-info">
 	<div class="container-fluid">
 		<h2>Gestionar Alumnos</h2>
-		<h3>A continuación se muestra una lista de todos los alumnos que se encuentran registrados.</h1>
+		<h3>A continuación se muestra una lista de todos los alumnos que se encuentran registrados.</h3>
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover">
 				<thead>
@@ -127,6 +127,7 @@
 		</div>
 	</div>
 	<div align="center">
+			<h3>Ingresa los datos del alumno</h3>
 			<div class="form-group">
     			<label for="boleta">Boleta</label>
     			<input type="text" class="form-control" id="boleta" name="boleta" required>
@@ -135,26 +136,40 @@
     			<label for="nombre">Nombre</label>
     			<input type="text" class="form-control" id="nombre" name="nombre" required>
   			</div>
-  			<div class="form-group">
-    			<label for="apPaterno">Apellido Paterno</label>
-    			<input type="text" class="form-control" id="apPaterno" name="apPaterno" required>
-  			</div>
-  			<div class="form-group">
-    			<label for="apMaterno">Apellido Materno</label>
-    			<input type="text" class="form-control" id="apMaterno" name="apMaterno" required>
-  			</div>
-  			<div class="form-group">
-    			<label for="email">Correo</label>
-    			<input type="text" class="form-control" id="email" name="email">
-  			</div>
-  			<div class="form-group">
-    			<label for="estatus">Estatus</label>
-    			<select class="form-control" id="estatus" name="estatus" required>
-    				<option value="inscrito">Inscrito</option>
-    				<option value="baja">Baja</option>
-    				<option value="egresado">Egresado</option>
-    			</select>
-  			</div>
+			<table>
+				<tr>
+					<td>
+						<div class="form-group">
+    						<label for="apPaterno">Apellido Paterno</label>
+    						<input type="text" class="form-control" id="apPaterno" name="apPaterno" required>
+  						</div>
+					</td>
+					<td>
+						<div class="form-group">
+    						<label for="apMaterno">Apellido Materno</label>
+    						<input type="text" class="form-control" id="apMaterno" name="apMaterno" required>
+  						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="form-group">
+    						<label for="email">Correo</label>
+    						<input type="text" class="form-control" id="email" name="email">
+  						</div>
+					</td>
+					<td>
+						<div class="form-group">
+    						<label for="estatus">Estatus</label>
+    						<select class="form-control" id="estatus" name="estatus" required>
+    							<option value="inscrito">Inscrito</option>
+    							<option value="baja">Baja</option>
+    							<option value="egresado">Egresado</option>
+    						</select>
+  						</div>
+					</td>
+				</tr>
+			</table>
   			<button id="agregarAlumno">Agregar</button> 
   			<button id="modificarAlumno">Modificar</button>
   			<button id="eliminarAlumno">Eliminar</button>
