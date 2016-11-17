@@ -112,7 +112,7 @@ public class ObtenerDatos extends HttpServlet {
 					data.add("motivo");regreso=busd.motivoNoTodos(where, data, fecha1, fecha2);
 					request.getSession().setAttribute("tablaBusqueda", regreso.get(0));
 					for(int i=0;i<regreso.size()-1;i++){
-						request.getSession().setAttribute("tdnt", regreso.get(i+1));
+						request.getSession().setAttribute("mnt", regreso.get(i+1));
 					}
 					response.sendRedirect("estadistica.jsp");
 				}
@@ -121,7 +121,7 @@ public class ObtenerDatos extends HttpServlet {
 					System.out.println(regreso.get(0));
 					request.getSession().setAttribute("tablaBusqueda", regreso.get(0));
 					for(int i=0;i<regreso.size()-1;i++){
-						request.getSession().setAttribute("tdt"+i, regreso.get(i+1));
+						request.getSession().setAttribute("mt"+i, regreso.get(i+1));
 					}
 					response.sendRedirect("estadistica.jsp");
 				}
@@ -131,7 +131,7 @@ public class ObtenerDatos extends HttpServlet {
 				System.out.println(regreso.get(0));
 				request.getSession().setAttribute("tablaBusqueda", regreso.get(0));
 				for(int i=0;i<regreso.size()-1;i++){
-					request.getSession().setAttribute("tdt"+i, regreso.get(i+1));
+					request.getSession().setAttribute("mt"+i, regreso.get(i+1));
 				}
 				response.sendRedirect("estadistica.jsp");
 			}	
