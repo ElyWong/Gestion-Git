@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Modelo.BusquedaDatos;
+
 /**
  * Servlet implementation class ObtenerSecuencia
  */
@@ -35,8 +37,15 @@ public class ObtenerSecuencia extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String tipodoc=request.getParameter("sec");
-		System.out.println(tipodoc);
+		BusquedaDatos busd=new BusquedaDatos();
+		String sec=request.getParameter("sec");
+		String sentencia =(String)request.getSession().getAttribute(sec);
+		System.out.println(sec);
+		System.out.println(sentencia);
+		String tabla=busd.simple(sentencia);
+		request.getSession().setAttribute("tablaBusqueda", tabla);
+		response.sendRedirect("estadistica.jsp");
+		
 	}
 
 }

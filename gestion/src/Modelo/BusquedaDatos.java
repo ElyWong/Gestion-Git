@@ -30,8 +30,8 @@ public class BusquedaDatos {
 			lista.clear();
 			lista=tp.ejecutar("select distinct tipoDocumento from solicitud");
 			for(int i=0;i<lista.size();i++){
-				q="select count(*) ";
-				qt="from solicitud where tipoDocumento='"+lista.get(i)+"' and fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"'";
+				q="select count(*) from solicitud";
+				qt=" where tipoDocumento='"+lista.get(i)+"' and fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"'";
 				if(where.size()!=0){
 					qt+=" and "+data.get(0)+" = '"+where.get(0)+"'";
 				}
@@ -71,12 +71,12 @@ public class BusquedaDatos {
 		
 		try {
 			if(where.size()>1){
-				q="select count(*)";
-				qt=" from solicitud where fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"' and "+data.get(0)+" = '"+where.get(0)+"' and "+data.get(1)+" = '"+where.get(1)+"'";
+				q="select count(*) from solicitud";
+				qt=" where fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"' and "+data.get(0)+" = '"+where.get(0)+"' and "+data.get(1)+" = '"+where.get(1)+"'";
 			}
 			else{
-				q="select count(*) ";
-				qt="from solicitud where fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"' and "+data.get(0)+" = '"+where.get(0)+"'";
+				q="select count(*) from solicitud";
+				qt=" where fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"' and "+data.get(0)+" = '"+where.get(0)+"'";
 				
 			}
 			q+=qt;
@@ -120,8 +120,8 @@ public class BusquedaDatos {
 			lista.clear();
 			lista=tp.ejecutar("select distinct motivo from solicitud");
 			for(int i=0;i<lista.size();i++){
-				q="select count(*) ";
-				qt="from solicitud where motivo='"+lista.get(i)+"' and fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"'";
+				q="select count(*) from solicitud";
+				qt=" where motivo='"+lista.get(i)+"' and fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"'";
 				if(where.size()!=0){
 					qt+=" and "+data.get(0)+" = '"+where.get(0)+"'";
 				}
@@ -160,13 +160,13 @@ public class BusquedaDatos {
 		String tabla, q, qt=new String();
 		
 		try {
-			q="select count(*)";
+			q="select count(*) from solicitud";
 			if(where.size()>1){
-				qt=" from solicitud where fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"' and "+data.get(0)+" = '"+where.get(0)+"' and "+data.get(1)+" = '"+where.get(1)+"'";
+				qt=" where fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"' and "+data.get(0)+" = '"+where.get(0)+"' and "+data.get(1)+" = '"+where.get(1)+"'";
 			}
 			else{
 				
-				qt=" from solicitud where fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"' and "+data.get(0)+" = '"+where.get(0)+"'";
+				qt=" where fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"' and "+data.get(0)+" = '"+where.get(0)+"'";
 				
 			}
 			q+=qt;
@@ -215,8 +215,8 @@ public class BusquedaDatos {
 			lista.clear();
 			lista=tp.ejecutar("select distinct idAnalista from solicitud where idAnalista IS NOT NULL");
 			for(int i=0;i<lista.size();i++){
-				q="select count(*) ";
-				qt="from solicitud where idAnalista='"+lista.get(i)+"' and fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"'";
+				q="select count(*) from solicitud";
+				qt=" where idAnalista='"+lista.get(i)+"' and fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"'";
 				if(where.size()!=0){
 					qt+=" and "+data.get(0)+" = '"+where.get(0)+"'";
 				}
@@ -263,17 +263,17 @@ public class BusquedaDatos {
 		
 		try {
 			if(where.size()>2){
-				q="select count(*)";
-				qt=" from solicitud where fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"' and "+data.get(0)+" = '"+where.get(0)+"' and "+data.get(1)+" = '"+where.get(1)+"' and "+data.get(2)+" = "+where.get(2)+" and idAnalista IS NOT NULL";
+				q="select count(*) from solicitud";
+				qt=" where fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"' and "+data.get(0)+" = '"+where.get(0)+"' and "+data.get(1)+" = '"+where.get(1)+"' and "+data.get(2)+" = "+where.get(2)+" and idAnalista IS NOT NULL";
 			}
 			else if(where.size()>1){
 				q="select count(*) ";
-				qt="from solicitud where fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"' and "+data.get(0)+" = '"+where.get(0)+"' and "+data.get(1)+" = "+where.get(1)+" and idAnalista IS NOT NULL";
+				qt=" where fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"' and "+data.get(0)+" = '"+where.get(0)+"' and "+data.get(1)+" = "+where.get(1)+" and idAnalista IS NOT NULL";
 				
 			}
 			else{
 				q="select count(*) ";
-				qt="from solicitud where fecha >= '"+fecha1+"' and fecha <= "+fecha2+" and "+data.get(0)+" = "+where.get(0)+" and idAnalista IS NOT NULL";
+				qt=" where fecha >= '"+fecha1+"' and fecha <= "+fecha2+" and "+data.get(0)+" = "+where.get(0)+" and idAnalista IS NOT NULL";
 			}
 			q+=qt;
 			sentencias.add(qt);
@@ -323,8 +323,8 @@ public class BusquedaDatos {
 			lista.clear();
 			lista=tp.ejecutar("select distinct nivel from alumno where nivel is not null");
 			for(int i=0;i<lista.size();i++){
-				q="select count(*)";
-				qt=" from solicitud, alumno where alumno.boleta=solicitud.idAlumno and alumno.nivel='"+lista.get(i)+"' and fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"'";
+				q="select count(*) from solicitud, alumno";
+				qt=" where alumno.boleta=solicitud.idAlumno and alumno.nivel='"+lista.get(i)+"' and fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"'";
 				for(int j=0;j<where.size()-1;j++){
 					qt=" and "+data.get(j)+" = '"+where.get(j)+"'";	
 				
@@ -364,20 +364,21 @@ public class BusquedaDatos {
 		String tabla, q, qt=new String();
 		
 		try {
-			q="select count(*)";
+			q="select count(*) from alumno, solicitud";
 			if(where.size()>2){
 				
-				qt=" from alumno, solicitud where alumno.boleta=solicitud.idAlumno and fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"' and "+data.get(0)+" = '"+where.get(0)+"' and "+data.get(1)+" = '"+where.get(1)+"' and "+data.get(2)+" = "+where.get(2)+"";
+				qt=" where fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"' and "+data.get(0)+" = '"+where.get(0)+"' and "+data.get(1)+" = '"+where.get(1)+"' and "+data.get(2)+" = "+where.get(2)+"";
 			}
 			else if(where.size()>1){
-				qt=" from alumno, solicitud where alumno.boleta=solicitud.idAlumno and fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"' and "+data.get(0)+" = '"+where.get(0)+"' and "+data.get(1)+" = "+where.get(1)+"";
+				qt=" where fecha >= '"+fecha1+"' and fecha <= '"+fecha2+"' and "+data.get(0)+" = '"+where.get(0)+"' and "+data.get(1)+" = "+where.get(1)+"";
 				
 			}
 			else{
-				qt=" from solicitud where alumno.boleta=solicitud.idAlumno and fecha >= '"+fecha1+"' and fecha <= "+fecha2+" and "+data.get(0)+" = "+where.get(0)+"";
+				qt=" where fecha >= '"+fecha1+"' and fecha <= "+fecha2+" and "+data.get(0)+" = "+where.get(0)+"";
 			}
 			q+=qt;
 			sentencias.add(qt);
+			q+=" and alumno.boleta=solicitud.idAlumno";
 			System.out.println(q);
 			lista=tp.ejecutar(q);
 			q="select nombre from usuario where idUsuario = '"+where.get(where.size()-1)+"'";
@@ -403,5 +404,34 @@ public class BusquedaDatos {
 			e.printStackTrace();
 		}
 			return listaAux;
+	}
+	public String simple(String s){
+		ArrayList<String> lista=new ArrayList<String>();
+		ArrayList<String> listaAUX=new ArrayList<String>();
+		String q="select motivo, status, nombre, idAnalista, tipoDocumento, fecha, fechaEntrega from usuario, solicitud";
+		q+=s;
+		q+=" and usuario.idUsuario=solicitud.idAlumno";
+		System.out.println(q);
+		String tabla = new String();
+		try{
+			lista=tp.ejecutar(q);
+			tabla="<tr><td>motivo</td><td>status</td><td>nombre alumno</td><td>nombre analista</td><td>tipo de documento</td><td>fecha de impresión</td><td>fecha de entrega</td></tr>";
+			for(int i=0;i<lista.size();i+=7){
+				q="select nombre from usuario where idUsuario='"+lista.get(i+3)+"'";
+				listaAUX=tp.ejecutar(q);
+				tabla+="<tr> <td>"+lista.get(i)+"</td>"
+						+ "<td>"+lista.get(i+1)+"</td>"
+						+ "<td>"+lista.get(i+2)+"</td>"
+						+ "<td>"+listaAUX.get(0)+"</td>"
+						+ "<td>"+lista.get(i+4)+"</td>"
+						+ "<td>"+lista.get(i+5)+"</td>"
+						+ "<td>"+lista.get(i+6)+"</td>";
+				listaAUX.clear();
+			}
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return tabla;
 	}
 }
