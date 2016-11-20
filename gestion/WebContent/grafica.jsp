@@ -28,36 +28,10 @@
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.dataTables.min.js"></script>
   <script src="js/main.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-	$('#tabla').DataTable( {
-	    language: {
-	    	"sProcessing":     "Procesando...",
-	        "sLengthMenu":     "Mostrar _MENU_ registros",
-	        "sZeroRecords":    "No se encontraron resultados",
-	        "sEmptyTable":     "Ningún dato disponible en esta tabla",
-	        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-	        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-	        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-	        "sInfoPostFix":    "",
-	        "sSearch":         "Buscar:",
-	        "sUrl":            "",
-	        "sInfoThousands":  ",",
-	        "sLoadingRecords": "Cargando...",
-	        "oPaginate": {
-	            "sFirst":    "Primero",
-	            "sLast":     "Último",
-	            "sNext":     "Siguiente",
-	            "sPrevious": "Anterior"
-	        },
-	        "oAria": {
-	            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-	            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-	        }
-	    }
-	} );
-});
-</script>
+  <script type="text/javascript" src="fc/fusioncharts.js"></script>
+        <script type="text/javascript" src="fc/fusioncharts.charts.js"></script>
+        <script type="text/javascript" src="fc/fusioncharts.theme.ocean.js"></script>
+
   <!-- /Scripts for facebook, twitter & youtube -->  
 </head>
 
@@ -137,33 +111,64 @@ $(document).ready(function(){
 
 	<!--Slider-->
   	<!--Slider-->
-      
-    </div>
     <!--/Slider Items-->
-    
 
-
-</div>
-<!-- /slider-wrapper -->           
-</section>
 <!--/Slider-->
 	<!-- Message -->
   	<!-- Message -->
   <section class="main-info">
          	<!--<h3>Mensaje del Director</h3>-->
-    <form action="ObtenerSecuencia" method="post" align="center">
-          <table id="tabla">
-          	<%=session.getAttribute("tablaBusqueda")%>		
-          </table>
-            
-    </form>
-    
-          <%=session.getAttribute("boton")%>	
+         <table align= "center">
+         	<tr>
+         		<td>
+         		<div id="grafica"></div>
+         		</td>
+         		<td>
+         		<div id="grafica2"></div>	
+         		</td>
+         	</tr>
+         </table>
+          	
+          
+           <%@page import="FusionCharts.FusionCharts" %>
+        
+<!--    Step 3:Include the package in the file where you want to show 
+        FusionCharts as follows.
+        
+        Step 4: Create a chart object using the FusionCharts JAVA class 
+        constructor. Syntax for the constructor: 
+        `FusionCharts("type of chart", "unique chart id", "width of chart",
+                        "height of chart", "div id to render the chart", 
+                        "data format", "data source")`   
+-->        
+        <% 
+
+            FusionCharts pastel = new FusionCharts(
+                        "pie3d",// chartType
+                        "ex1",// chartId
+                        "600", "400",// chartWidth, chartHeight
+                        "grafica",// chartContainer
+                        "xmlurl",// dataFormat
+                        "file1.xml"
+                    );
+	        FusionCharts lineas = new FusionCharts(
+	                "column2d",// chartType
+	                "ex2",// chartId
+	                "600", "400",// chartWidth, chartHeight
+	                "grafica2",// chartContainer
+	                "xmlurl",// dataFormat
+	                "file2.xml"
+	            );
+        %>
+<!--    Step 5: Render the chart    -->  
+        <%=pastel.render()%>
+        <%=lineas.render()%>
  	</section>
  	
      
-<!-- /Message -> 	<!-- /Message ->
+<!-- /Message -> 	<!-- /Message -->
 </body>
+
 
 	<!-- Required javascript files for Slider -->
 	

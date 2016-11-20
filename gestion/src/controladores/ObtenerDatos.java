@@ -54,6 +54,12 @@ public class ObtenerDatos extends HttpServlet {
 		ArrayList<String> where=new ArrayList<String>();
 		ArrayList<String> data=new ArrayList<String>();
 		ArrayList<String> regreso=new ArrayList<String>();
+		String path=request.getRealPath("/");
+		System.out.println(request.getRealPath("/"));
+		String boton="<form action=\"grafica.jsp\" method=\"get\" align=\"center\">"
+				    +"<input type=\"submit\" value=\"Generar gráfica\"" 
+				         +"name=\"Submit\" id=\"frm1_submit\" />"
+				         	+"</form>";
 		if(principal.equals("a")){
 			if(estadodoc!=null){
 				if(!estadodoc.equals("todos")){
@@ -68,15 +74,18 @@ public class ObtenerDatos extends HttpServlet {
 					data.add("tipoDocumento");
 					regreso=busd.tipoDocumentoNoTodos(where, data, fecha1, fecha2);
 					request.getSession().setAttribute("tablaBusqueda", regreso.get(0));
+					request.getSession().setAttribute("boton", "");
+					
 					for(int i=0;i<regreso.size()-1;i++){
 						request.getSession().setAttribute("tdnt", regreso.get(i+1));
 					}
 					response.sendRedirect("estadistica.jsp");
 				}
 				else{
-					regreso=busd.tipoDocumentoTodos(where, data, fecha1, fecha2);
+					regreso=busd.tipoDocumentoTodos(path, where, data, fecha1, fecha2);
 					System.out.println(regreso.get(0));
 					request.getSession().setAttribute("tablaBusqueda", regreso.get(0));
+					request.getSession().setAttribute("boton", boton);
 					for(int i=0;i<regreso.size()-1;i++){
 						request.getSession().setAttribute("tdt"+i, regreso.get(i+1));
 					}
@@ -84,9 +93,10 @@ public class ObtenerDatos extends HttpServlet {
 				}
 			}
 			else{
-				regreso=busd.tipoDocumentoTodos(where, data, fecha1, fecha2);
+				regreso=busd.tipoDocumentoTodos(path, where, data, fecha1, fecha2);
 				System.out.println(regreso.get(0));
 				request.getSession().setAttribute("tablaBusqueda", regreso.get(0));
+				request.getSession().setAttribute("boton", boton);
 				for(int i=0;i<regreso.size()-1;i++){
 					request.getSession().setAttribute("tdt"+i, regreso.get(i+1));
 				}
@@ -111,15 +121,17 @@ public class ObtenerDatos extends HttpServlet {
 					where.add(motivodoc);
 					data.add("motivo");regreso=busd.motivoNoTodos(where, data, fecha1, fecha2);
 					request.getSession().setAttribute("tablaBusqueda", regreso.get(0));
+					request.getSession().setAttribute("boton", "");
 					for(int i=0;i<regreso.size()-1;i++){
 						request.getSession().setAttribute("mnt", regreso.get(i+1));
 					}
 					response.sendRedirect("estadistica.jsp");
 				}
 				else{
-					regreso=busd.motivoTodos(where, data, fecha1, fecha2);
+					regreso=busd.motivoTodos(path, where, data, fecha1, fecha2);
 					System.out.println(regreso.get(0));
 					request.getSession().setAttribute("tablaBusqueda", regreso.get(0));
+					request.getSession().setAttribute("boton", boton);
 					for(int i=0;i<regreso.size()-1;i++){
 						request.getSession().setAttribute("mt"+i, regreso.get(i+1));
 					}
@@ -127,9 +139,10 @@ public class ObtenerDatos extends HttpServlet {
 				}
 			}
 			else{
-				regreso=busd.motivoTodos(where, data, fecha1, fecha2);
+				regreso=busd.motivoTodos(path, where, data, fecha1, fecha2);
 				System.out.println(regreso.get(0));
 				request.getSession().setAttribute("tablaBusqueda", regreso.get(0));
+				request.getSession().setAttribute("boton", boton);
 				for(int i=0;i<regreso.size()-1;i++){
 					request.getSession().setAttribute("mt"+i, regreso.get(i+1));
 				}
@@ -162,15 +175,17 @@ public class ObtenerDatos extends HttpServlet {
 						data.add("idanalista");
 						regreso=busd.analistaNoTodos(where, data, fecha1, fecha2);
 						request.getSession().setAttribute("tablaBusqueda", regreso.get(0));
+						request.getSession().setAttribute("boton", "");
 						for(int i=0;i<regreso.size()-1;i++){
 							request.getSession().setAttribute("ant", regreso.get(i+1));
 						}
 						response.sendRedirect("estadistica.jsp");
 					}
 					else{
-						regreso=busd.analistaTodos(where, data, fecha1, fecha2);
+						regreso=busd.analistaTodos(path, where, data, fecha1, fecha2);
 						System.out.println(regreso.get(0));
 						request.getSession().setAttribute("tablaBusqueda", regreso.get(0));
+						request.getSession().setAttribute("boton", boton);
 						for(int i=0;i<regreso.size()-1;i++){
 							request.getSession().setAttribute("at"+i, regreso.get(i+1));
 						}
@@ -178,9 +193,10 @@ public class ObtenerDatos extends HttpServlet {
 					}
 				}
 				else{
-					regreso=busd.analistaTodos(where, data, fecha1, fecha2);
+					regreso=busd.analistaTodos(path, where, data, fecha1, fecha2);
 					System.out.println(regreso.get(0));
 					request.getSession().setAttribute("tablaBusqueda", regreso.get(0));
+					request.getSession().setAttribute("boton", boton);
 					for(int i=0;i<regreso.size()-1;i++){
 						request.getSession().setAttribute("at"+i, regreso.get(i+1));
 					}
@@ -195,15 +211,17 @@ public class ObtenerDatos extends HttpServlet {
 						data.add("nivel");
 						regreso=busd.alumnoNoTodos(where, data, fecha1, fecha2);
 						request.getSession().setAttribute("tablaBusqueda", regreso.get(0));
+						request.getSession().setAttribute("boton", "");
 						for(int i=0;i<regreso.size()-1;i++){
 							request.getSession().setAttribute("alnt", regreso.get(i+1));
 						}
 						response.sendRedirect("estadistica.jsp");
 					}
 					else{
-						regreso=busd.alumnoTodos(where, data, fecha1, fecha2);
+						regreso=busd.alumnoTodos(path, where, data, fecha1, fecha2);
 						System.out.println(regreso.get(0));
 						request.getSession().setAttribute("tablaBusqueda", regreso.get(0));
+						request.getSession().setAttribute("boton", boton);
 						for(int i=0;i<regreso.size()-1;i++){
 							request.getSession().setAttribute("alt"+i, regreso.get(i+1));
 						}
@@ -211,9 +229,10 @@ public class ObtenerDatos extends HttpServlet {
 					}
 				}
 				else{
-					regreso=busd.alumnoTodos(where, data, fecha1, fecha2);
+					regreso=busd.alumnoTodos(path, where, data, fecha1, fecha2);
 					System.out.println(regreso.get(0));
 					request.getSession().setAttribute("tablaBusqueda", regreso.get(0));
+					request.getSession().setAttribute("boton", boton);
 					for(int i=0;i<regreso.size()-1;i++){
 						request.getSession().setAttribute("alt"+i, regreso.get(i+1));
 					}
