@@ -219,15 +219,15 @@ $(document).ready(function(){
   <section class="main-info">
          	<!--<h3>Mensaje del Director</h3>-->
     <form action="ObtenerDatos" method="post" align="center">
-          <p>Fecha de inicio: <input type="date" name="fecha1" required/></p>
-    		<p>Fecha final: <input type="date" name="fecha2" required/></p>
+          Fecha de inicio: <input type="date" name="fecha1" required/>
+    		Fecha final: <input type="date" name="fecha2" required/>
      		<p>Criterio principal:</p>
              <select name="principal" id="principal" required>
 			   <option disabled selected value></option>
                <option value="a">Por tipo de documento</option>
                <option value="b">Por motivo de documento</option>
                <option value="c">Por tipo de usuario</option>
-             </select><br><br>
+             </select><br>
     &nbsp; &nbsp;
              <p id="1" style="display: none;">Selecciona el tipo de documento:</p>
              <select name="tipodoc" id="tipodoc" style="display: none;">
@@ -239,7 +239,7 @@ $(document).ready(function(){
                <option value="Constancia de estudios">Constancia de estudios</option>
                <option value="Constancia de periodo vacacional">Constancia de periodo vacacional</option>
                <option value="Constancia para trámite de servicio social">Constancia para trámite de servicio social</option>
-             </select><br><br>
+             </select><br>
              <p id ="2" style="display: none;">Selecciona el estado de los documentos a visualizar:</p>
              <select name="estadodoc" id="estadodoc" style="display: none;">
                <option disabled selected value></option>
@@ -249,7 +249,7 @@ $(document).ready(function(){
                <option value="En firma">En firma</option>
                <option value="Lista">Lista</option>
                <option value="Entregada">Entregada</option>
-             </select><br><br>
+             </select><br>
              <p id ="3" style="display: none;">Selecciona el motivo de los documentos:</p>
              <select name="motivodoc" id="motivodoc" style="display: none;">
                <option disabled selected value></option>
@@ -259,13 +259,13 @@ $(document).ready(function(){
                <option value="Padres">Padres</option>
                <option value="Ninguno">Ninguno</option>
                <option value="Otro">Otro</option>
-             </select><br><br>
+             </select><br>
              <p id ="4" style="display: none;">Selecciona el tipo de usuario:</p><br>
              <select name="tipousu" id="tipousu" style="display: none;">
                <option disabled selected value></option>
                <option value="1">Analista</option>
                <option value="2">Alumno</option>
-             </select><br><br>
+             </select><br>
              <p id ="5" style="display: none;">Selecciona el nombre del analista:</p>
              <select name="nomanalista" id="nomanalista" style="display: none;">
                <option disabled selected value></option>
@@ -275,7 +275,7 @@ $(document).ready(function(){
                <option value="202">Rigoberto</option>
                <option value="203">Eduardo</option>
                <option value="204">Miguel</option>
-             </select><br><br>
+             </select><br>
              <p id ="6" style="display: none;">Selecciona el nivel de los alumnos:</p>
              <select name="nivelalu" id="nivelalu" style="display: none;">
                <option disabled selected value></option>
@@ -285,11 +285,12 @@ $(document).ready(function(){
                <option value="3">3</option>
                <option value="4">4</option>
                <option value="5">5</option>
-             </select><br><br>
+             </select><br>
    
             <input type="submit" class="special" value="Obtener datos">
             
-          </form><br><br>
+          </form>
+          
  	</section>
  	
      

@@ -41,7 +41,7 @@
 
 </head>
 
-<body onload="esconderModales()">
+<body>
 <section class="fondoBlanco">
 	<div id="areaTrabajo">
     <div class="container">

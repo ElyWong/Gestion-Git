@@ -12,7 +12,8 @@ public class BusquedaDatos {
 	}
 	String usu, pass, correo, newPass;
 	TestPool tp;
-	public ArrayList<String> tipoDocumentoTodos(ArrayList<String> where,ArrayList<String> data, String fecha1, String fecha2){
+	modeloXML modelo=new modeloXML();
+	public ArrayList<String> tipoDocumentoTodos(String path, ArrayList<String> where,ArrayList<String> data, String fecha1, String fecha2){
 		ArrayList<String> lista=new ArrayList<String>();
 		ArrayList<String> lista2=new ArrayList<String>(); 
 		ArrayList<String> listaAux=new ArrayList<String>();
@@ -51,6 +52,9 @@ public class BusquedaDatos {
 							+ "<td><input type=\"submit\" name=\"sec\" value=\"tdt"+i+"\"></td>"
 								+ "<td>"+fecha1+"</td><td>"+fecha2+"</td></tr>";
 			}
+			String titulo="Gráfica por tipo de documento";
+			modelo.crearDocumento(titulo, path, lista2, lista);
+			modelo.crearTrabajo(titulo, path, lista2, lista);
 			tabla+="<tr><td>"+total+"</td><td></td><td></td><td></td><td></td></tr>";
 			listaAux.add(tabla);
 			for(int i=0;i<sentencias.size();i++){
@@ -102,7 +106,7 @@ public class BusquedaDatos {
 		}
 			return listaAux;
 	}
-	public ArrayList<String> motivoTodos(ArrayList<String> where,ArrayList<String> data, String fecha1, String fecha2){
+	public ArrayList<String> motivoTodos(String path, ArrayList<String> where,ArrayList<String> data, String fecha1, String fecha2){
 		ArrayList<String> lista=new ArrayList<String>();
 		ArrayList<String> lista2=new ArrayList<String>(); 
 		ArrayList<String> listaAux=new ArrayList<String>();
@@ -142,6 +146,9 @@ public class BusquedaDatos {
 								+ "<td>"+fecha1+"</td><td>"+fecha2+"</td></tr>";
 			}
 			tabla+="<tr><td>"+total+"</td><td></td><td></td><td></td><td></td></tr>";
+			String titulo="Gráfica por motivos";
+			modelo.crearDocumento(titulo, path, lista2, lista);
+			modelo.crearTrabajo(titulo, path, lista2, lista);
 			listaAux.add(tabla);
 			for(int i=0;i<sentencias.size();i++){
 				listaAux.add(sentencias.get(i));
@@ -192,7 +199,7 @@ public class BusquedaDatos {
 		}
 			return listaAux;
 	}
-	public ArrayList<String> analistaTodos(ArrayList<String> where,ArrayList<String> data, String fecha1, String fecha2){
+	public ArrayList<String> analistaTodos(String path, ArrayList<String> where,ArrayList<String> data, String fecha1, String fecha2){
 		ArrayList<String> lista=new ArrayList<String>();
 		ArrayList<String> lista2=new ArrayList<String>(); 
 		ArrayList<String> listaNom=new ArrayList<String>(); 
@@ -244,6 +251,9 @@ public class BusquedaDatos {
 								+ "<td>"+fecha1+"</td><td>"+fecha2+"</td></tr>";
 			}
 			tabla+="<tr><td>"+total+"</td><td></td><td></td><td></td><td></td></tr>";
+			String titulo="Gráfica por analista";
+			modelo.crearDocumento(titulo, path, lista2, lista);
+			modelo.crearTrabajo(titulo, path, lista2, lista);
 			listaAux.add(tabla);
 			for(int i=0;i<sentencias.size();i++){
 				listaAux.add(sentencias.get(i));
@@ -302,7 +312,7 @@ public class BusquedaDatos {
 		}
 			return listaAux;
 	}
-	public ArrayList<String> alumnoTodos(ArrayList<String> where,ArrayList<String> data, String fecha1, String fecha2){
+	public ArrayList<String> alumnoTodos(String path, ArrayList<String> where,ArrayList<String> data, String fecha1, String fecha2){
 		ArrayList<String> lista=new ArrayList<String>();
 		ArrayList<String> lista2=new ArrayList<String>(); 
 		ArrayList<String> listaNom=new ArrayList<String>(); 
@@ -346,6 +356,9 @@ public class BusquedaDatos {
 								+ "<td>"+fecha1+"</td><td>"+fecha2+"</td></tr>";
 			}
 			tabla+="<tr><td>"+total+"</td><td></td><td></td><td></td><td></td></tr>";
+			String titulo="Gráfica por nivel de alumnos";
+			modelo.crearDocumento(titulo, path, lista2, lista);
+			modelo.crearTrabajo(titulo, path, lista2, lista);
 			listaAux.add(tabla);
 			for(int i=0;i<sentencias.size();i++){
 				listaAux.add(sentencias.get(i));
@@ -417,15 +430,26 @@ public class BusquedaDatos {
 			lista=tp.ejecutar(q);
 			tabla="<tr><td>motivo</td><td>status</td><td>nombre alumno</td><td>nombre analista</td><td>tipo de documento</td><td>fecha de impresión</td><td>fecha de entrega</td></tr>";
 			for(int i=0;i<lista.size();i+=7){
+				System.out.println(lista.get(i+3));
+				if(lista.get(i+3)==null){
+					listaAUX.add("-");
+				}else{
 				q="select nombre from usuario where idUsuario='"+lista.get(i+3)+"'";
+				System.out.println(q);
 				listaAUX=tp.ejecutar(q);
+				}
+				
 				tabla+="<tr> <td>"+lista.get(i)+"</td>"
 						+ "<td>"+lista.get(i+1)+"</td>"
 						+ "<td>"+lista.get(i+2)+"</td>"
 						+ "<td>"+listaAUX.get(0)+"</td>"
 						+ "<td>"+lista.get(i+4)+"</td>"
-						+ "<td>"+lista.get(i+5)+"</td>"
-						+ "<td>"+lista.get(i+6)+"</td>";
+						+ "<td>"+lista.get(i+5)+"</td>";
+						
+				if(lista.get(i+6)==null)
+					tabla+= "<td> - </td>";
+				else
+					tabla+= "<td>"+lista.get(i+6)+"</td>";
 				listaAUX.clear();
 			}
 		}catch (SQLException e) {

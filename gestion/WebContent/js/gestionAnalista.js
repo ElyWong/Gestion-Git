@@ -148,17 +148,11 @@ function actualizarAnalista () {
 	});
 }
 
-function esconderModales() {
-	$('#modalEdit').css( "display", "none" );
-	$('#myModal').css( "display", "none" );
-}
-
-
 function modalAgregar(){
 	
-	$('#myModal').css( "display", "block" );
 	$('#myModal').modal('show');
-
+	$('#myModal').css( "display", "block" );
+	
 	setTimeout( function(){
 		$('#modalEdit').modal('hide');
 		$('#modalEdit').css( "display", "none" );
@@ -168,8 +162,8 @@ function modalAgregar(){
 
 function modalEditar(){
 	
-	$('#modalEdit').css( "display", "block" );
 	$('#modalEdit').modal('show');
+	$('#modalEdit').css( "display", "block" );
 	
 	setTimeout( function(){
 		$('#myModal').modal('hide');

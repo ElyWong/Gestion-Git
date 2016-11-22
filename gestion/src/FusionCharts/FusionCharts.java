@@ -7,7 +7,7 @@ package FusionCharts;
 /**
  *
  * @Contributors Sahasrangshu Guha, Subhasis Ghosal
- */
+ */ 
 public class FusionCharts {
     private String constructorTemplate = "<script type=\"text/javascript\">FusionCharts.ready(function () {new FusionCharts(__constructorOptions__);});</script>";
     private String renderTemplate = "<script type=\"text/javascript\">FusionCharts.ready(function () {                FusionCharts(\"__chartId__\").render();});</script>";
@@ -70,6 +70,7 @@ public class FusionCharts {
                 outputHTML = this.constructorTemplate.replace("__constructorOptions__", this.jsonEncode().replace("__dataSource__","\'"+this.chartDataSource+"\'"))+this.renderTemplate.replace("__chartId__", this.chartOptions[0]);
             }
         }
+        System.out.println(outputHTML);
         return outputHTML;
     }
 }
