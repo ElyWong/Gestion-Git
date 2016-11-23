@@ -41,7 +41,7 @@
 
 </head>
 
-<body>
+<body onload ="esconderModales()">
 <section class="fondoBlanco">
 	<div id="areaTrabajo">
     <div class="container">
@@ -131,7 +131,7 @@
 						for (Usuarios u : lstAnalistas) {
 							email = u.getEmail();
 							
-							if(email.equals("null") || email.equals("")) {
+							if(email == null || email.equals("")) {
 								email = "EMAIL NO REGISTRADO";
 							}
 							if(i%2 == 0)
