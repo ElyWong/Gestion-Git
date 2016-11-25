@@ -30,11 +30,10 @@ import com.itextpdf.text.pdf.PdfWriter;
 public final class GenerarBitacoraPDF {
 	
 	private static Consultas consultas = new Consultas();
-	private static ResultSet rSet;
 	
 	private GenerarBitacoraPDF() {}
 	
-	public static String crearDocumento(ResultSet rs, ArrayList<String> analistas, String path, String fecha) throws FileNotFoundException, DocumentException, SQLException {
+	public static String crearDocumento(ResultSet rs, String path, String fecha) throws FileNotFoundException, DocumentException, SQLException {
 		String filename = "bitacora";
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		filename += formatter.format(new Date()) + ".pdf";
@@ -68,20 +67,24 @@ public final class GenerarBitacoraPDF {
         table.addCell(new Paragraph("Hora de Entrega", font));
         table.addCell(new Paragraph("Analista Entrega", font));
         
-        int i=0;
         while(rs.next()) {
         	table.addCell(new Paragraph(rs.getString("Fecha"), font));
         	table.addCell(new Paragraph(rs.getString("Boleta"), font));
         	table.addCell(new Paragraph(rs.getString("Alumno"), font));
         	table.addCell(new Paragraph(rs.getString("Impresion"), font));
         	table.addCell(new Paragraph(rs.getString("Solicitud"), font));
-        	table.addCell(new Paragraph(analistas.get(i++), font));
+        	ArrayList<String> analista = consultas.obtenerAnalista(rs.getString("AnalistaI"));
+        	if(analista.size() > 0) {
+        		table.addCell(new Paragraph(analista.get(0), font));
+        	} else {
+        		table.addCell("");
+        	}
         	table.addCell(new Paragraph(rs.getString("Estatus"), font));
         	table.addCell(new Paragraph(rs.getString("Folio"), font));
         	table.addCell(new Paragraph(rs.getString("Entrega"), font));
-        	rSet = consultas.obtenerAnalistaEntrega(rs.getString("Analista"));
-        	if(rSet.next()) {
-        		table.addCell(new Paragraph(rSet.getString(1), font));
+        	analista = consultas.obtenerAnalista(rs.getString("AnalistaE"));
+        	if(analista.size() > 0) {
+        		table.addCell(new Paragraph(analista.get(0), font));
         	} else {
         		table.addCell("");
         	}
@@ -147,9 +150,9 @@ public final class GenerarBitacoraPDF {
         	table.addCell(new Paragraph(rs.getString("Estatus"), font));
         	table.addCell(new Paragraph(rs.getString("Folio"), font));
         	table.addCell(new Paragraph(rs.getString("Entrega"), font));
-        	rSet = consultas.obtenerAnalistaEntrega(rs.getString("AnalistaE"));
-        	if(rSet.next()) {
-        		table.addCell(new Paragraph(rSet.getString(1), font));
+        	analista = consultas.obtenerAnalista(rs.getString("AnalistaE"));
+        	if(analista.size() > 0) {
+        		table.addCell(new Paragraph(analista.get(0), font));
         	} else {
         		table.addCell("");
         	}

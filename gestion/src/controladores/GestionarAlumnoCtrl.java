@@ -43,12 +43,6 @@ public class GestionarAlumnoCtrl extends HttpServlet {
 				out.print(rs.getString("Boleta"));
 				out.print("</td>");
 				out.print("<td>");
-				out.print(rs.getString("Paterno"));
-				out.print("</td>");
-				out.print("<td>");
-				out.print(rs.getString("Materno"));
-				out.print("</td>");
-				out.print("<td>");
 				out.print(rs.getString("Nombre"));
 				out.print("</td>");
 				out.print("<td>");
@@ -56,6 +50,9 @@ public class GestionarAlumnoCtrl extends HttpServlet {
 				out.print("</td>");
 				out.print("<td>");
 				out.print(rs.getString("Estatus"));
+				out.print("</td>");
+				out.print("<td>");
+				out.print(rs.getString("Nivel"));
 				out.print("</td>");
 				out.print("</tr>");
 			}
@@ -73,25 +70,22 @@ public class GestionarAlumnoCtrl extends HttpServlet {
 		response.setContentType("text/html");
 		try {
 			Integer boleta = Integer.valueOf(request.getParameter("boleta"));
+			Integer nivel = Integer.valueOf(request.getParameter("nivel"));
 			Consultas consulta = new Consultas();
-			String nombre, apPaterno, apMaterno, email, estatus;
+			String nombre, email, estatus;
 			switch(operacion) {
 				case "A":
 					nombre = request.getParameter("nombre");
-					apPaterno = request.getParameter("apPaterno");
-					apMaterno = request.getParameter("apMaterno");
 					email = request.getParameter("email");
 					estatus = request.getParameter("estatus");
-					consulta.insertarAlumno(boleta, nombre, apPaterno, apMaterno, email, estatus);
+					consulta.insertarAlumno(boleta, nombre, email, estatus, nivel);
 					mensaje = "El alumno fue agregado correctamente.";
 					break; 
 				case "M":
 					nombre = request.getParameter("nombre");
-					apPaterno = request.getParameter("apPaterno");
-					apMaterno = request.getParameter("apMaterno");
 					email = request.getParameter("email");
 					estatus = request.getParameter("estatus");
-					consulta.modificarAlumno(boleta, nombre, apPaterno, apMaterno, email, estatus);
+					consulta.modificarAlumno(boleta, nombre, email, estatus, nivel);
 					mensaje = "Los datos del alumno se modificaron correctamente.";
 					break;
 				case "E":

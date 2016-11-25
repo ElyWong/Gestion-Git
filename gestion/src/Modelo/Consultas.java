@@ -100,43 +100,50 @@ public class Consultas {
 	
 	public ResultSet generarReporte(String idAnalista, String fecha) throws SQLException {
 		String sql = "select s.idAlumno as Boleta, "
-				+ "concat(u.ap,' ',u.am,' ',u.nombre) as Alumno, s.horaImpresion as Impresion, s.tipoDocumento as Solicitud, "
+				+ "u.nombre as Alumno, s.horaImpresion as Impresion, s.tipoDocumento as Solicitud, "
 				+ "s.status as Estatus, s.folio as Folio, s.horaEntrega as Entrega, s.idAnalista2 as AnalistaE, s.idAnalista as AnalistaI from solicitud s, usuario u where "
-				+ "u.idUsuario=s.idAlumno and s.status!='Iniciada' and s.fecha='" + fecha + "' and (s.idAnalista=" + idAnalista + " or s.idAnalista2=" + idAnalista + ") order by 1, 4;";
+				+ "u.idUsuario=s.idAlumno and s.status!='iniciada' and s.fecha='" + fecha + "' and (s.idAnalista=" + idAnalista + " or s.idAnalista2=" + idAnalista + ") order by 1, 4;";
 		return operador.ejecutarQuery(sql);
 	}
 	
 	public ArrayList<String> obtenerAnalista(String idAnalista) throws SQLException {
-		String sql = "select concat(ap,' ',am,' ',nombre) as Analista "
+		String sql = "select nombre as Analista "
 				+ "from usuario where idUsuario=" + idAnalista + ";";
 		return operador.ejecutar(sql);
 	}
 	
 	public ResultSet generarBitacora(String fecha) throws SQLException {
 		String sql = "select s.fecha as Fecha, s.idAlumno as Boleta, "
-				+ "concat(u.ap,' ',u.am,' ',u.nombre) as Alumno, s.horaImpresion as Impresion, s.tipoDocumento as Solicitud, "
-				+ "s.status as Estatus, s.folio as Folio, s.horaEntrega as Entrega, s.idAnalista2 as Analista from solicitud s, usuario u where "
-				+ "u.idUsuario=s.idAlumno and s.status!='Iniciada' and s.fecha>='" + fecha + "' order by 1, 4;";
+				+ "u.nombre as Alumno, s.horaImpresion as Impresion, s.tipoDocumento as Solicitud, "
+				+ "s.status as Estatus, s.folio as Folio, s.horaEntrega as Entrega, s.idAnalista2 as AnalistaE, s.idAnalista as AnalistaI from solicitud s, usuario u where "
+				+ "u.idUsuario=s.idAlumno and s.status!='iniciada' and s.fecha>='" + fecha + "' order by 1, 4;";
 		return operador.ejecutarQuery(sql);
 	}
 	
 	public ArrayList<String> obtenerAnalistas(String fecha) throws SQLException {
-		String sql = "select concat(u.ap,' ',u.am,' ',u.nombre) as Analista "
+		String sql = "select u.nombre as Analista "
 				+ "from solicitud s, usuario u where u.idUsuario=s.idAnalista "
 				+ "and s.fecha>='" + fecha + "' order by s.fecha, s.horaImpresion;";
 		return operador.ejecutar(sql);
 	}
 	
+	public ResultSet obtenerAnalistaImpresion(String idAnalista) throws SQLException {
+		String sql = "select u.nombre as Analista "
+				+ "from solicitud s, usuario u where u.idUsuario=s.idAnalista "
+				+ "and s.idAnalista>=" + idAnalista + ";";
+		return operador.ejecutarQuery(sql);
+	}
+	
 	public ResultSet obtenerAnalistaEntrega(String idAnalista) throws SQLException {
-		String sql = "select concat(u.ap,' ',u.am,' ',u.nombre) as Analista "
+		String sql = "select u.nombre as Analista "
 				+ "from solicitud s, usuario u where u.idUsuario=s.idAnalista2 "
 				+ "and s.idAnalista2>=" + idAnalista + ";";
 		return operador.ejecutarQuery(sql);
 	}
 	
 	public ResultSet listarEstudiantes() throws SQLException {
-		String sql = "select u.idUsuario as Boleta, u.ap as Paterno, u.am as Materno, u.nombre as Nombre, "
-				+ "u.email as Correo, a.status as Estatus "
+		String sql = "select u.idUsuario as Boleta, u.nombre as Nombre, "
+				+ "u.email as Correo, a.status as Estatus, a.nivel as Nivel "
 				+ "from usuario u, alumno a "
 				+ "where a.boleta=u.idUsuario;";
 		return operador.ejecutarQuery(sql);
@@ -147,22 +154,21 @@ public class Consultas {
 		operador.ejecutarSR(sql);
 	}
 	
-	public void modificarAlumno(Integer boleta, String nombre, String apPaterno, 
-			String apMaterno, String email, String estatus) throws SQLException {
-		String sql = "update usuario set nombre='" + nombre + "', ap='" + apPaterno + 
-				"', am='" + apMaterno + "', email='" + email + "' where idUsuario=" + boleta + ";" ;
+	public void modificarAlumno(Integer boleta, String nombre, 
+			String email, String estatus, Integer nivel) throws SQLException {
+		String sql = "update usuario set nombre='" + nombre + "', email='" + email + "' where idUsuario=" + boleta + ";" ;
 		operador.ejecutarSR(sql);
-		sql = "update alumno set status='" + estatus + "' where boleta=" + boleta + ";";
+		sql = "update alumno set status='" + estatus + "', nivel=" + nivel + " where boleta=" + boleta + ";";
 		operador.ejecutarSR(sql);
 	}
 	
-	public void insertarAlumno(Integer boleta, String nombre, String apPaterno, 
-			String apMaterno, String email, String estatus) throws SQLException {
-		String sql = "insert into usuario(idUsuario, tipo, password, nombre, ap, am, email) "
-				+ "values(" + boleta + ", 'alumno', '" + apPaterno.toUpperCase() + "', "
-						+ "'" + nombre + "', '" + apPaterno + "', '" + apMaterno + "', '" + email + "');";
+	public void insertarAlumno(Integer boleta, String nombre,
+			String email, String estatus, Integer nivel) throws SQLException {
+		String sql = "insert into usuario(idUsuario, tipo, password, nombre, email) "
+				+ "values(" + boleta + ", 'alumno', '" + boleta + "', "
+						+ "'" + nombre + "', '" + email + "');";
 		operador.ejecutarSR(sql);
-		sql = "insert into alumno(boleta, status) values(" + boleta +  ", '" + estatus +  "');";
+		sql = "insert into alumno(boleta, status, nivel) values(" + boleta +  ", '" + estatus +  "', " + nivel + ");";
 		operador.ejecutarSR(sql);
 	}
 	

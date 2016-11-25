@@ -22,11 +22,13 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/sl-slide.css">
   <link rel="stylesheet" href="css/lazyYT.css"><!-- Agregado el 190515 para el funcionomiento de youtube -->
+  <link rel="stylesheet" href="css/jquery.dataTables.min.css">
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="js/vendor/jquery.min.js"></script>
   <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
   <script src="js/vendor/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 	<script src="js/main.js"></script>
      <script src="js/gestionAlumno.js"> </script>
         <script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
@@ -94,7 +96,7 @@
 			<li ><a href="gestionAnalista.jsp">Gestionar Analistas</a></li>
 			<li ><a href="gestionAlumno.jsp">Gestionar Alumnos</a></li>
 			<li ><a href="gestionJefeArea.jsp">Gestionar Jefes de área</a></li>
-            <li class="active"><a href="generarEstadistica.jsp">Generar estadistica</a></li>
+            <li class="active"><a href="estadistica.jsp">Generar estadistica</a></li>
 			<li ><a href="logout">Cerrar sesión</a></li>
 	    </ul>     
       </div><!--/.nav-collapse -->
@@ -110,15 +112,14 @@
 		<h2>Gestionar Alumnos</h2>
 		<h3>A continuación se muestra una lista de todos los alumnos que se encuentran registrados.</h3>
 		<div class="table-responsive">
-			<table class="table table-bordered table-hover">
+			<table id="table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
 						<th>Boleta</th>
-						<th>Apellido Paterno</th>
-						<th>Apellido Materno</th>
 						<th>Nombre</th>
 						<th>Correo</th>
 						<th>Estatus</th>
+						<th>Nivel</th>
 					</tr>
 				</thead>
 				<tbody id="tableAlumno" style="cursor:pointer">
@@ -130,7 +131,7 @@
 			<h3>Ingresa los datos del alumno</h3>
 			<div class="form-group">
     			<label for="boleta">Boleta</label>
-    			<input type="text" class="form-control" id="boleta" name="boleta" required>
+    			<input type="number" class="form-control" id="boleta" name="boleta" required>
   			</div>
   			<div class="form-group">
     			<label for="nombre">Nombre</label>
@@ -140,22 +141,14 @@
 				<tr>
 					<td>
 						<div class="form-group">
-    						<label for="apPaterno">Apellido Paterno</label>
-    						<input type="text" class="form-control" id="apPaterno" name="apPaterno" required>
+    						<label for="nivel">Nivel</label>
+    						<input type="number" class="form-control" id="nivel" name="nivel">
   						</div>
 					</td>
-					<td>
-						<div class="form-group">
-    						<label for="apMaterno">Apellido Materno</label>
-    						<input type="text" class="form-control" id="apMaterno" name="apMaterno" required>
-  						</div>
-					</td>
-				</tr>
-				<tr>
 					<td>
 						<div class="form-group">
     						<label for="email">Correo</label>
-    						<input type="text" class="form-control" id="email" name="email">
+    						<input type="email" class="form-control" id="email" name="email">
   						</div>
 					</td>
 					<td>

@@ -3,7 +3,6 @@ package controladores;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -46,8 +45,7 @@ public class GenerarBitacoraCtrl extends HttpServlet {
 		Consultas consulta = new Consultas();
 		try {
 			ResultSet rs = consulta.generarBitacora(fecha);
-			ArrayList<String> analistas = consulta.obtenerAnalistas(fecha);
-			String filename = GenerarBitacoraPDF.crearDocumento(rs, analistas, path, fecha);
+			String filename = GenerarBitacoraPDF.crearDocumento(rs, path, fecha);
 			request.getSession().setAttribute("filename", filename);
 			response.sendRedirect("bitacoraAnalista.jsp");
 		} catch (SQLException e) {
