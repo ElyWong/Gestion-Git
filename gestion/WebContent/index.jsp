@@ -114,8 +114,8 @@
   	<!-- Message -->
   <section class="main-info">
 	<div class="row-fluid">
-	<h1>Bienvenido</h1>
-			<h3 align=center">Este es el sistema de solicitud y seguimiento de tramites de Gestión Escolar de la Escuela Superior de Cómputo. Para iniciar sesión y acceder
+	<h1 align="center">Bienvenido</h1>
+			<h3 align="center">Este es el sistema de solicitud y seguimiento de tramites de Gestión Escolar de la Escuela Superior de Cómputo. Para iniciar sesión y acceder
 			a los servicios es necesario que proporciones tu usuario y contraseña, tu usuario será tú numero de boleta y tu contraseña predeterminada son los ultimos 4 dígitos de tu boleta.</h3>
 	</div><br><br>
 	<div class="container">

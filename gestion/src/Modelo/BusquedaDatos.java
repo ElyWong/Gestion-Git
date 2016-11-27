@@ -52,11 +52,12 @@ public class BusquedaDatos {
 							+ "<td><input type=\"submit\" name=\"sec\" value=\"tdt"+i+"\"></td>"
 								+ "<td>"+fecha1+"</td><td>"+fecha2+"</td></tr>";
 			}
-			tabla+="</tbody>";
+			
 			String titulo="Gráfica por tipo de documento";
 			modelo.crearDocumento(titulo, path, lista2, lista);
 			modelo.crearTrabajo(titulo, path, lista2, lista);
-			tabla+="<tr><td>"+total+"</td><td></td><td></td><td></td><td></td></tr>";
+			tabla+="<tr><td>Total: "+total+"</td><td></td><td></td><td></td><td></td></tr>";
+			tabla+="</tbody>";
 			listaAux.add(tabla);
 			for(int i=0;i<sentencias.size();i++){
 				listaAux.add(sentencias.get(i));
@@ -147,7 +148,7 @@ public class BusquedaDatos {
 							+ "<td><input type=\"submit\" name=\"sec\" value=\"mt"+i+"\"></td>"
 								+ "<td>"+fecha1+"</td><td>"+fecha2+"</td></tr>";
 			}
-			tabla+="<tr><td>"+total+"</td><td></td><td></td><td></td><td></td></tr>";
+			tabla+="<tr><td>Total: "+total+"</td><td></td><td></td><td></td><td></td></tr>";
 			tabla+="</tbody>";
 			String titulo="Gráfica por motivos";
 			modelo.crearDocumento(titulo, path, lista2, lista);
@@ -254,7 +255,7 @@ public class BusquedaDatos {
 							+ "<td><input type=\"submit\" name=\"sec\" value=\"at"+i+"\"></td>"
 								+ "<td>"+fecha1+"</td><td>"+fecha2+"</td></tr>";
 			}
-			tabla+="<tr><td>"+total+"</td><td></td><td></td><td></td><td></td></tr>";
+			tabla+="<tr><td>Total: "+total+"</td><td></td><td></td><td></td><td></td></tr>";
 			tabla+="</tbody>";
 			String titulo="Gráfica por analista";
 			modelo.crearDocumento(titulo, path, lista2, lista);
@@ -361,7 +362,7 @@ public class BusquedaDatos {
 							+ "<td><input type=\"submit\" name=\"sec\" value=\"alt"+i+"\"></td>"
 								+ "<td>"+fecha1+"</td><td>"+fecha2+"</td></tr>";
 			}
-			tabla+="<tr><td>"+total+"</td><td></td><td></td><td></td><td></td></tr>";
+			tabla+="<tr><td>Total: "+total+"</td><td></td><td></td><td></td><td></td></tr>";
 			tabla+="</tbody>";
 			String titulo="Gráfica por nivel de alumnos";
 			modelo.crearDocumento(titulo, path, lista2, lista);

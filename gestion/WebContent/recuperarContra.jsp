@@ -94,12 +94,13 @@
   	<!-- Message -->
   <section class="main-info">
 	<div class="row-fluid">
-			<h3 align=center">Proporciona el correo asignado a tu cuenta.</div><br><br>
+	<h1 align="center">Recuperar contraseña</h1>
+			<h3 align="center">Proporciona el correo asignado a tu cuenta.</div><br><br>
 	<div class="container">
               	<!--<h3>Mensaje del Director</h3>-->
           <form action="RecuperarContra"  method="post" align="center">
             <input type="email" name="email" id="email" placeholder = "Correo electrónico" style="text-align:center;" required>
-            <input type="submit" class="special" value="Enviar">
+            <br><input type="submit" class="special" value="Enviar">
           </form>     
   	</div>
 	
