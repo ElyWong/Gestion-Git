@@ -35,7 +35,7 @@ public class solicitarJsp {
 		else {
 			if (tipo == 1)
 				form = "<h3 align=\"center\">Todos los campos son obligatorios, verificalos antes de realizar el registro de la solicitud.</h3><br><br>"
-						+ "<form action=\"solicitarArea\" method=\"post\" align=\"center\">" + "Tipo de documento:"
+						+ "<form action=\"solicitarJefeArea\" method=\"post\" align=\"center\">" + "Tipo de documento:"
 						+ "<select name=\"tipodoc\" id=\"tipodoc\">" + "<option value=\"1\">Boleta global</option>"
 						+ "<option value=\"2\">Boleta Certificada</option>"
 						+ "<option value=\"3\">Boleta Departamental</option>"
@@ -48,13 +48,12 @@ public class solicitarJsp {
 						+ "<option value=\"1\">Beca Externa</option>" + "<option value=\"2\">Movilidad</option>"
 						+ "<option value=\"3\">Ninguno</option> " + "<option value=\"4\">Padres</option>"
 						+ "<option value=\"5\">Otro</option>" + "</select>" + "<br><br>" + "<p>No. de Boleta:</p>"
-						+ "<div class=\"controls\" id=\"profs\">" + "<form class=\"input-append\">"
-						+ "<div id=\"field\"><input autocomplete=\"off\" class=\"input\" id=\"field1\" name=\"prof1\" type=\"text\" placeholder=\"Boleta\" data-items=\"10\"/><button id=\"b1\" class=\"btn add-more\" type=\"button\">+</button></div>"
-						+ "</form>" + "<br><br>" + "<input type=\"submit\" value=\"Aceptar\">" + "</form>";
+						+ "<input name=\"noboleta\" id=\"noboleta\" style=\"text-align:center;\" required>"
+						+ "<br><br>" + "<input type=\"submit\" value=\"Aceptar\">" + "</form>";
 			else {
 				if (tipo == 2)
 					form = "<h3 align=\"center\">Todos los campos son obligatorios, verificalos antes de realizar el registro de la solicitud.</h3><br><br>"
-							+ "<form action=\"SolicitarArea\" method=\"post\" align=\"center\">" + "Tipo de documento:"
+							+ "<form action=\"solicitarAnalista\" method=\"post\" align=\"center\">" + "Tipo de documento:"
 							+ "<select name=\"tipodoc\" id=\"tipodoc\">" + "<option value=\"1\">Boleta global</option>"
 							+ "<option value=\"2\">Boleta Certificada</option>"
 							+ "<option value=\"3\">Boleta Departamental</option>"

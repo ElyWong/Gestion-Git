@@ -98,6 +98,53 @@ public class Consultas {
 		return false;
 	}
 	
+	public boolean solicitarDocumentoAnalista(Integer idUsuario, String motivo, String tipoDocumento, Integer boleta) throws SQLException {
+		String sql = "select status from solicitud where idAlumno=" + idUsuario + " and "
+				+ "tipoDocumento='" + tipoDocumento + "';";
+		ArrayList<String> lista = operador.ejecutar(sql);
+		int i=0;
+		if(lista != null) {
+			for(String status : lista) {
+				if(!status.equals("Entregada")) {
+					i++;
+				}
+			}
+		}
+		System.out.println("Solicitudes: " + i);
+		if(i < 5) {
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			sql = "insert into solicitud(motivo, status, fecha, idAnalista, idAlumno, tipoDocumento) "
+					+ "values('" + motivo + "','Iniciada','" + 
+					formatter.format(new Date()) + "'," + idUsuario +","+ boleta + ",'" + tipoDocumento + "')";
+			operador.ejecutarSR(sql);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean solicitarDocumentoJefe(Integer idUsuario, String motivo, String tipoDocumento, Integer boleta) throws SQLException {
+		String sql = "select status from solicitud where idAlumno=" + idUsuario + " and "
+				+ "tipoDocumento='" + tipoDocumento + "';";
+		ArrayList<String> lista = operador.ejecutar(sql);
+		int i=0;
+		if(lista != null) {
+			for(String status : lista) {
+				if(!status.equals("Entregada")) {
+					i++;
+				}
+			}
+		}
+		System.out.println("Solicitudes: " + i);
+		if(i < 5) {
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			sql = "insert into solicitud(motivo, status, fecha, idJefeArea, idAlumno, tipoDocumento) "
+					+ "values('" + motivo + "','Iniciada','" + 
+					formatter.format(new Date()) + "'," + idUsuario +","+ boleta + ",'" + tipoDocumento + "')";
+			operador.ejecutarSR(sql);
+			return true;
+		}
+		return false;
+	}
 	public ResultSet generarReporte(String idAnalista, String fecha) throws SQLException {
 		String sql = "select s.idAlumno as Boleta, "
 				+ "u.nombre as Alumno, s.horaImpresion as Impresion, s.tipoDocumento as Solicitud, "

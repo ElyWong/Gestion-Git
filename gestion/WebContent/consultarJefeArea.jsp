@@ -2,6 +2,10 @@
     pageEncoding="ISO-8859-1"%>
    <%@ page import = "Modelo.Solicitud"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%
+	String mensaje = (String) request.getAttribute("mensaje");
+%>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -35,8 +39,12 @@
 		String cad=unaS.getJefeAreaTabla((String) session.getAttribute("boleta")); 
 		%>
 		var data = <%out.println("\""+cad+"\"");%>
+		var mensaje = <%out.println("\""+mensaje+"\"");%>
 		$("#tabla").append("<tr><th>Fecha</th><th>Boleta</th><th>Trámite</th><th>Motivo</th><th>Estado</th></tr>");
   		$("#tabla").append(data); 
+  		if(mensaje.indexOf("null") != 0) {
+  			alert(mensaje);
+  		}
 	});
 </script>
   <!-- /Scripts for facebook, twitter & youtube -->  

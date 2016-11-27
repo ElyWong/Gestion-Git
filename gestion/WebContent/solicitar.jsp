@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+	String mensaje = (String) request.getAttribute("mensaje");
+%>
 <head>
 <meta charset="utf-8">
 <meta property="og:url" content="http://www.isc.escom.ipn.mx" />
@@ -21,8 +24,17 @@
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/sl-slide.css">
 <link rel="stylesheet" href="css/lazyYT.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript">
+<link rel="stylesheet" type="text/css" href="css/estilo.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript"></script>
+<script>
+	$(function() {
+		var mensaje = <%out.println("\""+mensaje+"\"");%>
+		if (mensaje.indexOf("null") != 0) {
+			alert(mensaje);
+		}
+	});
 </script>
 </head>
 <body>
@@ -73,39 +85,57 @@
 		<!-- Fin div container -->
 	</div>
 	<!-- Fin del areaTrabajo --> </section>
-<script>
- $(document).ready(function(){
-    var next = 1;
-    $(".add-more").click(function(e){
-        e.preventDefault();
-        var addto = "#field" + next;
-        var addRemove = "#field" + (next);
-        next = next + 1;
-        var newIn = '<input autocomplete="off" class="input form-control" id="field' + next + '" name="field' + next + '" type="text">';
-        var newInput = $(newIn);
-        var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
-        var removeButton = $(removeBtn);
-        $(addto).after(newInput);
-        $(addRemove).after(removeButton);
-        $("#field" + next).attr('data-source',$(addto).attr('data-source'));
-        $("#count").val(next);  
-        
-            $('.remove-me').click(function(e){
-                e.preventDefault();
-                var fieldNum = this.id.charAt(this.id.length-1);
-                var fieldID = "#field" + fieldNum;
-                $(this).remove();
-                $(fieldID).remove();
-            });
-    });
-}); 
-</script> 
+	<script>
+		$(document)
+				.ready(
+						function() {
+							var next = 1;
+							$(".add-more")
+									.click(
+											function(e) {
+												e.preventDefault();
+												var addto = "#field" + next;
+												var addRemove = "#field"
+														+ (next);
+												next = next + 1;
+												var newIn = '<input autocomplete="off" class="input form-control" id="field' + next + '" name="field' + next + '" type="text">';
+												var newInput = $(newIn);
+												var removeBtn = '<button id="remove'
+														+ (next - 1)
+														+ '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
+												var removeButton = $(removeBtn);
+												$(addto).after(newInput);
+												$(addRemove)
+														.after(removeButton);
+												$("#field" + next).attr(
+														'data-source',
+														$(addto).attr(
+																'data-source'));
+												$("#count").val(next);
+
+												$('.remove-me')
+														.click(
+																function(e) {
+																	e
+																			.preventDefault();
+																	var fieldNum = this.id
+																			.charAt(this.id.length - 1);
+																	var fieldID = "#field"
+																			+ fieldNum;
+																	$(this)
+																			.remove();
+																	$(fieldID)
+																			.remove();
+																});
+											});
+						});
+	</script>
 	<%
-		String tipo1=(String) request.getSession().getAttribute("tipo");
-		Integer tipo=Integer.parseInt(tipo1);
-		Modelo.solicitarJsp sol=new Modelo.solicitarJsp();
-		String menu=sol.armarMenu(tipo);
-		String formulario=sol.armarFormulario(tipo);
+		String tipo1 = (String) request.getSession().getAttribute("tipo");
+		Integer tipo = Integer.parseInt(tipo1);
+		Modelo.solicitarJsp sol = new Modelo.solicitarJsp();
+		String menu = sol.armarMenu(tipo);
+		String formulario = sol.armarFormulario(tipo);
 	%>
 	<header class="navbar" data-spy="affix" data-offset-top="100"
 		id="miMenu"> <section class="fondoBlanco">
@@ -120,7 +150,7 @@
 				<!--<a id="logo" class="pull-left" href="index.php"></a>-->
 				<div class="nav-collapse collapse pull-right">
 					<ul class="nav">
-						<%=menu %>
+						<%=menu%>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
@@ -144,7 +174,7 @@
 	<!-- /slider-wrapper -->
 	</section>
 	<!--/Slider-->
-	<section class="main-info"><%=formulario %></section>
+	<section class="main-info"><%=formulario%></section>
 	<!-- /Message -> 	<!-- /Message ->
 <body>
 
@@ -153,7 +183,7 @@
 	<script src="js/jquery.slitslider.js"></script>
 	<script src="js/slider.js"></script>
 	<!-- /Required javascript files for Slider -->
-	
+
 
 	<!-- GOOGLE ANALYTICS -->
 	<script src="js/googleAnalytics.js"></script>
