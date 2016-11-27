@@ -85,60 +85,6 @@ public class Solicitud {
 		}
 		return r;
 	}
-	public int actualizarGrafica(String path){
-		String q;
-		int r=0;
-		try {
-			q="select distinct motivo from solicitud";
-			ArrayList<String> lista=pool.ejecutar(q);
-			ArrayList<String> lista2=new ArrayList<String>(); 
-			ArrayList<String> listaAux=new ArrayList<String>(); 
-			for(int i=0;i<lista.size();i++){
-				q="select count(*) from solicitud where motivo='"+lista.get(i)+"'";
-				listaAux=pool.ejecutar(q);
-				lista2.add(listaAux.get(0));
-				listaAux.clear();
-			}
-			xml.crearMotivo(path, lista, lista2);
-			//agregar lista 1 y 2 al generador xml de motivo
-			q="select distinct tipoDocumento from solicitud";
-			lista.clear();
-			lista2.clear();
-			listaAux.clear();
-			lista=pool.ejecutar(q);
-			for(int i=0;i<lista.size();i++){
-				q="select count(*) from solicitud where tipoDocumento='"+lista.get(i)+"'";
-				listaAux=pool.ejecutar(q);
-				lista2.add(listaAux.get(0));
-				listaAux.clear();
-			}
-			xml.crearDocumento(path, lista, lista2);
-			//agregar lista 1 y 2 al generador xml de tipoDocumento
-			q="select * from analista";
-			lista.clear();
-			lista2.clear();
-			listaAux.clear();
-			lista=pool.ejecutar(q);
-			for(int i=0;i<lista.size();i++){
-				q="select nombre from usuario where idUsuario='"+lista.get(i)+"'";
-				listaAux=pool.ejecutar(q);
-				lista2.add(listaAux.get(0));
-				listaAux.clear();
-				q="select count(*) from solicitud where idAnalista='"+lista.get(i)+"'";
-				listaAux=pool.ejecutar(q);
-				lista2.add(listaAux.get(0));
-				listaAux.clear();
-			}
-			xml.crearTrabajo(path, lista2);
-			//agregar lista 2 al generador xml de trabajoAnalista
-			
-			r=1;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//System.out.println(res);
-		return r;
-	}
+	
 
 }
