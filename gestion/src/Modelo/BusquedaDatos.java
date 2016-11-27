@@ -43,7 +43,7 @@ public class BusquedaDatos {
 				lista2.add(listaAux.get(0));
 				listaAux.clear();
 			}
-			tabla="<tr><td>número de solicitudes</td><td>tipo de documento</td> <td>ver todas</td><td>Fecha inicio</td><td>Fecha final</td></tr>";
+			tabla="<thead><tr><td>número de solicitudes</td><td>tipo de documento</td> <td>ver todas</td><td>Fecha inicio</td><td>Fecha final</td></tr></thead><tbody>";
 			for(int i=0;i<lista.size();i++){
 				//pues magia!!!
 				//Se debe poder editar!?
@@ -52,6 +52,7 @@ public class BusquedaDatos {
 							+ "<td><input type=\"submit\" name=\"sec\" value=\"tdt"+i+"\"></td>"
 								+ "<td>"+fecha1+"</td><td>"+fecha2+"</td></tr>";
 			}
+			tabla+="</tbody>";
 			String titulo="Gráfica por tipo de documento";
 			modelo.crearDocumento(titulo, path, lista2, lista);
 			modelo.crearTrabajo(titulo, path, lista2, lista);
@@ -86,7 +87,7 @@ public class BusquedaDatos {
 			q+=qt;
 			sentencias.add(qt);
 			lista=tp.ejecutar(q);
-			tabla="<tr><td>número de solicitudes</td><td>tipo de documento</td> <td>ver todas</td><td>Fecha inicio</td><td>Fecha final</td></tr>";
+			tabla="<thead><tr><td>número de solicitudes</td><td>tipo de documento</td> <td>ver todas</td><td>Fecha inicio</td><td>Fecha final</td></tr></thead><tbody>";
 			if(where.size()>1){
 				//pues magia!!!
 				//Se debe poder editar!?
@@ -95,6 +96,7 @@ public class BusquedaDatos {
 							+ "<td><input type=\"submit\" name=\"sec\" value=\"tdnt\"></td>"
 								+ "<td>"+fecha1+"</td><td>"+fecha2+"</td></tr>";
 			}
+			tabla+="</tbody>";
 			listaAux.add(tabla);
 			for(int i=0;i<sentencias.size();i++){
 				listaAux.add(sentencias.get(i));
@@ -136,7 +138,7 @@ public class BusquedaDatos {
 				lista2.add(listaAux.get(0));
 				listaAux.clear();
 			}
-			tabla="<tr><td>número de solicitudes</td><td>motivo del documento</td> <td>ver todas</td><td>Fecha inicio</td><td>Fecha final</td></tr>";
+			tabla="<thead><tr><td>número de solicitudes</td><td>motivo del documento</td> <td>ver todas</td><td>Fecha inicio</td><td>Fecha final</td></tr></thead><tbody>";
 			for(int i=0;i<lista.size();i++){
 				//pues magia!!!
 				//Se debe poder editar!?
@@ -146,6 +148,7 @@ public class BusquedaDatos {
 								+ "<td>"+fecha1+"</td><td>"+fecha2+"</td></tr>";
 			}
 			tabla+="<tr><td>"+total+"</td><td></td><td></td><td></td><td></td></tr>";
+			tabla+="</tbody>";
 			String titulo="Gráfica por motivos";
 			modelo.crearDocumento(titulo, path, lista2, lista);
 			modelo.crearTrabajo(titulo, path, lista2, lista);
@@ -179,7 +182,7 @@ public class BusquedaDatos {
 			q+=qt;
 			sentencias.add(qt);
 			lista=tp.ejecutar(q);
-			tabla="<tr><td>número de solicitudes</td><td>motivo del documento</td> <td>ver todas</td><td>Fecha inicio</td><td>Fecha final</td></tr>";
+			tabla="<thead><tr><td>número de solicitudes</td><td>motivo del documento</td> <td>ver todas</td><td>Fecha inicio</td><td>Fecha final</td></tr></thead><tbody>";
 			if(where.size()>1){
 				//pues magia!!!
 				//Se debe poder editar!?
@@ -188,6 +191,7 @@ public class BusquedaDatos {
 							+ "<td><input type=\"submit\" name=\"sec\" value=\"mnt\"></td>"
 								+ "<td>"+fecha1+"</td><td>"+fecha2+"</td></tr>";
 			}
+			tabla+="</tbody>";
 			listaAux.add(tabla);
 			for(int i=0;i<sentencias.size();i++){
 				listaAux.add(sentencias.get(i));
@@ -241,7 +245,7 @@ public class BusquedaDatos {
 				listaNom.add(listaAux.get(0));
 				listaAux.clear();
 			}
-			tabla="<tr><td>número de solicitudes</td><td>Analista</td> <td>ver todas</td><td>Fecha inicio</td><td>Fecha final</td></tr>";
+			tabla="<thead><tr><td>número de solicitudes</td><td>Analista</td> <td>ver todas</td><td>Fecha inicio</td><td>Fecha final</td></tr></thead><tbody>";
 			for(int i=0;i<lista.size();i++){
 				//pues magia!!!
 				//Se debe poder editar!?
@@ -251,6 +255,7 @@ public class BusquedaDatos {
 								+ "<td>"+fecha1+"</td><td>"+fecha2+"</td></tr>";
 			}
 			tabla+="<tr><td>"+total+"</td><td></td><td></td><td></td><td></td></tr>";
+			tabla+="</tbody>";
 			String titulo="Gráfica por analista";
 			modelo.crearDocumento(titulo, path, lista2, lista);
 			modelo.crearTrabajo(titulo, path, lista2, lista);
@@ -291,7 +296,7 @@ public class BusquedaDatos {
 			q="select nombre from usuario where idUsuario = '"+where.get(where.size()-1)+"'";
 			System.out.println(q);
 			listaAux=tp.ejecutar(q);
-			tabla="<tr><td>número de solicitudes</td><td>Analista</td> <td>ver todas</td><td>Fecha inicio</td><td>Fecha final</td></tr>";
+			tabla="<thead><tr><td>número de solicitudes</td><td>Analista</td> <td>ver todas</td><td>Fecha inicio</td><td>Fecha final</td></tr></thead><tbody>";
 			if(where.size()>1){
 				//pues magia!!!
 				//Se debe poder editar!?
@@ -300,6 +305,7 @@ public class BusquedaDatos {
 							+ "<td><input type=\"submit\" name=\"sec\" value=\"ant\"></td>"
 								+ "<td>"+fecha1+"</td><td>"+fecha2+"</td></tr>";
 			}
+			tabla+="</tbody>";
 			listaAux.clear();
 			listaAux.add(tabla);
 			for(int i=0;i<sentencias.size();i++){
@@ -346,7 +352,7 @@ public class BusquedaDatos {
 				lista2.add(listaAux.get(0));
 				listaAux.clear();
 			}
-			tabla="<tr><td>número de solicitudes</td><td>nivel</td> <td>ver todas</td><td>Fecha inicio</td><td>Fecha final</td></tr>";
+			tabla="<thead><tr><td>número de solicitudes</td><td>nivel</td> <td>ver todas</td><td>Fecha inicio</td><td>Fecha final</td></tr></thead><tbody>";
 			for(int i=0;i<lista.size();i++){
 				//pues magia!!!
 				//Se debe poder editar!?
@@ -356,6 +362,7 @@ public class BusquedaDatos {
 								+ "<td>"+fecha1+"</td><td>"+fecha2+"</td></tr>";
 			}
 			tabla+="<tr><td>"+total+"</td><td></td><td></td><td></td><td></td></tr>";
+			tabla+="</tbody>";
 			String titulo="Gráfica por nivel de alumnos";
 			modelo.crearDocumento(titulo, path, lista2, lista);
 			modelo.crearTrabajo(titulo, path, lista2, lista);
@@ -397,7 +404,7 @@ public class BusquedaDatos {
 			q="select nombre from usuario where idUsuario = '"+where.get(where.size()-1)+"'";
 			System.out.println(q);
 			listaAux=tp.ejecutar(q);
-			tabla="<tr><td>número de solicitudes</td><td>nivel</td> <td>ver todas</td><td>Fecha inicio</td><td>Fecha final</td></tr>";
+			tabla="<thead><tr><td>número de solicitudes</td><td>nivel</td> <td>ver todas</td><td>Fecha inicio</td><td>Fecha final</td></tr></thead><tbody>";
 			if(where.size()>1){
 				//pues magia!!!
 				//Se debe poder editar!?
@@ -406,6 +413,7 @@ public class BusquedaDatos {
 							+ "<td><input type=\"submit\" name=\"sec\" value=\"alnt\"></td>"
 								+ "<td>"+fecha1+"</td><td>"+fecha2+"</td></tr>";
 			}
+			tabla+="</tbody>";
 			listaAux.clear();
 			listaAux.add(tabla);
 			for(int i=0;i<sentencias.size();i++){
@@ -428,7 +436,8 @@ public class BusquedaDatos {
 		String tabla = new String();
 		try{
 			lista=tp.ejecutar(q);
-			tabla="<tr><td>motivo</td><td>status</td><td>nombre alumno</td><td>nombre analista</td><td>tipo de documento</td><td>fecha de impresión</td><td>fecha de entrega</td></tr>";
+			tabla="<thead><tr><td>motivo</td><td>status</td><td>nombre alumno</td><td>nombre analista</td>"
+					+ "<td>tipo de documento</td><td>fecha de impresión</td><td>fecha de entrega</td></tr></thead><tbody>";
 			for(int i=0;i<lista.size();i+=7){
 				System.out.println(lista.get(i+3));
 				if(lista.get(i+3)==null){
@@ -451,7 +460,9 @@ public class BusquedaDatos {
 				else
 					tabla+= "<td>"+lista.get(i+6)+"</td>";
 				listaAUX.clear();
+				
 			}
+			tabla+="</tbody>";
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
