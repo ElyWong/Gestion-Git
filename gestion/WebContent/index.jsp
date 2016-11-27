@@ -127,7 +127,7 @@
             <br><br>
             <input type="submit" class="special" value="Entrar">
             <br>
-            <a href="recuperarContraseña">Recuperar contraseña</a>
+            <a href="recuperarContra.jsp">Recuperar contraseña</a>
           </form>     
   	</div>
 	
