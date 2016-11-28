@@ -91,10 +91,6 @@ ul.tab li a:focus, .active {
 				.append(
 						"<thead><tr><th>Selección</th><th>Fecha</th><th>Boleta</th><th>Nombre</th><th>Trámite</th><th>Motivo</th></tr></thead>");
 		$("#iniciadas").append(data);
-		cargarTablaIniciadas();
-		if (mensaje.indexOf("null") != 0) {
-			alert(mensaje);
-		}
 	});
 	$(function() {
 <%Solicitud unaS1 = new Solicitud();
@@ -105,7 +101,6 @@ ul.tab li a:focus, .active {
 				.append(
 						"<thead><tr><th>Selección</th><th>Fecha</th><th>Boleta</th><th>Nombre</th><th>Trámite</th><th>Motivo</th></tr></thead>");
 		$("#impresas").append(data);
-		cargarTablaImpresas();
 	});
 	$(function() {
 <%Solicitud unaS2 = new Solicitud();
@@ -116,7 +111,6 @@ ul.tab li a:focus, .active {
 				.append(
 						"<thead><tr><th>Selección</th><th>Fecha</th><th>Boleta</th><th>Nombre</th><th>Trámite</th><th>Motivo</th></tr></thead>");
 		$("#enFirma").append(data);
-		cargarTablaEnFirma();
 	});
 	$(function() {
 <%Solicitud unaS3 = new Solicitud();
@@ -127,8 +121,121 @@ ul.tab li a:focus, .active {
 				.append(
 						"<thead><tr><th>Selección</th><th>Fecha</th><th>Boleta</th><th>Nombre</th><th>Trámite</th><th>Motivo</th><th>Folio</th></tr></thead>");
 		$("#listas").append(data);
-		cargarTablaListas();
 	});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#iniciadas').DataTable( {
+	    language: {
+	    	"sProcessing":     "Procesando...",
+	        "sLengthMenu":     "Mostrar _MENU_ registros",
+	        "sZeroRecords":    "No se encontraron resultados",
+	        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+	        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+	        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+	        "sInfoPostFix":    "",
+	        "sSearch":         "Buscar:",
+	        "sUrl":            "",
+	        "sInfoThousands":  ",",
+	        "sLoadingRecords": "Cargando...",
+	        "oPaginate": {
+	            "sFirst":    "Primero",
+	            "sLast":     "Último",
+	            "sNext":     "Siguiente",
+	            "sPrevious": "Anterior"
+	        },
+	        "oAria": {
+	            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+	            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	        }
+	    }
+	} );
+});
+$(document).ready(function(){
+	$('#impresas').DataTable( {
+	    language: {
+	    	"sProcessing":     "Procesando...",
+	        "sLengthMenu":     "Mostrar _MENU_ registros",
+	        "sZeroRecords":    "No se encontraron resultados",
+	        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+	        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+	        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+	        "sInfoPostFix":    "",
+	        "sSearch":         "Buscar:",
+	        "sUrl":            "",
+	        "sInfoThousands":  ",",
+	        "sLoadingRecords": "Cargando...",
+	        "oPaginate": {
+	            "sFirst":    "Primero",
+	            "sLast":     "Último",
+	            "sNext":     "Siguiente",
+	            "sPrevious": "Anterior"
+	        },
+	        "oAria": {
+	            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+	            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	        }
+	    }
+	} );
+});
+$(document).ready(function(){
+	$('#enFirma').DataTable( {
+	    language: {
+	    	"sProcessing":     "Procesando...",
+	        "sLengthMenu":     "Mostrar _MENU_ registros",
+	        "sZeroRecords":    "No se encontraron resultados",
+	        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+	        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+	        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+	        "sInfoPostFix":    "",
+	        "sSearch":         "Buscar:",
+	        "sUrl":            "",
+	        "sInfoThousands":  ",",
+	        "sLoadingRecords": "Cargando...",
+	        "oPaginate": {
+	            "sFirst":    "Primero",
+	            "sLast":     "Último",
+	            "sNext":     "Siguiente",
+	            "sPrevious": "Anterior"
+	        },
+	        "oAria": {
+	            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+	            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	        }
+	    }
+	} );
+});
+$(document).ready(function(){
+	$('#listas').DataTable( {
+	    language: {
+	    	"sProcessing":     "Procesando...",
+	        "sLengthMenu":     "Mostrar _MENU_ registros",
+	        "sZeroRecords":    "No se encontraron resultados",
+	        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+	        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+	        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+	        "sInfoPostFix":    "",
+	        "sSearch":         "Buscar:",
+	        "sUrl":            "",
+	        "sInfoThousands":  ",",
+	        "sLoadingRecords": "Cargando...",
+	        "oPaginate": {
+	            "sFirst":    "Primero",
+	            "sLast":     "Último",
+	            "sNext":     "Siguiente",
+	            "sPrevious": "Anterior"
+	        },
+	        "oAria": {
+	            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+	            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	        }
+	    }
+	} );
+});
 </script>
 <!-- /Scripts for facebook, twitter & youtube -->
 </head>
@@ -228,24 +335,6 @@ ul.tab li a:focus, .active {
 	<!-- /header -->
 
 	<!-- /header -->
-
-
-	<!--Slider-->
-	<!--Slider-->
-
-	</div>
-	<!--/Slider Items-->
-
-	<!--Slider Next Prev button-->
-	<nav id="nav-arrows" class="nav-arrows">
-		<span class="nav-arrow-prev"><i class="icon-angle-left"></i></span> <span
-			class="nav-arrow-next"><i class="icon-angle-right"></i></span>
-	</nav>
-	<!--/Slider Next Prev button-->
-
-	</div>
-	<!-- /slider-wrapper -->
-	</section>
 	<!--/Slider-->
 	<!-- Message -->
 	<!-- Message -->

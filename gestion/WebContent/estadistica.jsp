@@ -122,7 +122,7 @@ $(document).ready(function(){
 			<li ><a href="#">Gestionar Alumnos</a></li>
 			<li ><a href="gestionJefeArea.jsp">Gestionar Jefes de área</a></li>
             <li class="active"><a href="generarEstadistica.jsp">Generar estadistica</a></li>
-			<li ><a href="index.jsp">Cerrar sesión</a></li>
+			<li ><a href="logout">Cerrar sesión</a></li>
 	    </ul>     
       </div><!--/.nav-collapse -->
      	</div>
@@ -131,21 +131,7 @@ $(document).ready(function(){
 	</section>
 </header>
 <!-- /header -->
-    
-	<!-- /header -->
-    
 
-	<!--Slider-->
-  	<!--Slider-->
-      
-    </div>
-    <!--/Slider Items-->
-    
-
-
-</div>
-<!-- /slider-wrapper -->           
-</section>
 <!--/Slider-->
 	<!-- Message -->
   	<!-- Message -->

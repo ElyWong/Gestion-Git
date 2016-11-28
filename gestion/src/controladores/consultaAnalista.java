@@ -1,6 +1,9 @@
 package controladores;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Enumeration;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,10 +42,31 @@ public class consultaAnalista extends HttpServlet {
 		// TODO Auto-generated method stub
 		String[] boletas= request.getParameterValues("nBoleta");
 		String usuario=(String)request.getSession().getAttribute("boleta");
-		String status=request.getParameter("status");
+		String status=(String)request.getParameter("boton").trim();
+		Enumeration<String> names = request.getParameterNames();
+		String name = null, folio = null;
 		System.out.println("El status es: "+status);
 		System.out.println("las boletas son:");
 		Solicitud unaS=new Solicitud();
+		
+		if(status.equals("entregada")) {
+			while(names.hasMoreElements()) {
+				 name = names.nextElement();
+				 if(!name.equals("nBoleta") && 
+						 !name.equals("") && 
+						 !name.equals("boton")) {
+					 folio = request.getParameter(name);
+					 if(!folio.equals("")) {
+						 try {
+							 System.out.println("Folio: " + folio);
+							unaS.actualizarFolio(name, folio);
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					 }
+				 }
+			}	
+		}
 		
 		if(!boletas.toString().equals("")){
 			for(String s : boletas){

@@ -21,6 +21,7 @@ public class Solicitud {
 				+ id + " ORDER BY fecha DESC";
 		try {
 			ArrayList<String> lista = pool.ejecutar(query);
+			res+="<tbody>";
 			for (int i = 0; i < lista.size(); i++) {
 				// pues magia!!!
 				// Se debe poder editar!?
@@ -28,6 +29,7 @@ public class Solicitud {
 						+ "</td><td>" + lista.get(++i) + "</td><td>" + lista.get(++i) + "</td><td><a href='eliminar?id="
 						+ lista.get(++i) + "'>[Eliminar]</a></td></tr>";
 			}
+			res+="</tbody>";
 			System.out.println(res);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -44,13 +46,15 @@ public class Solicitud {
 		try {
 			System.out.println(query);
 			ArrayList<String> lista = pool.ejecutar(query);
+			res+="<tbody>";
 			for (int i = 0; i < lista.size(); i++) {
 				// pues magia!!!
 				// Se debe poder editar!?
-				res += "<tr><td>" + lista.get(i) + "</td><td>" + lista.get(++i) + "</td><td>" + lista.get(++i)
-						+ "</td><td>" + lista.get(++i) + "</td><td><a href='eliminar?id=" + lista.get(++i)
-						+ "'>[Eliminar]</a></td></tr>";
+				res += "<tr><td>" + lista.get(i) + "</td><td>" + lista.get(++i) + "</td><td>" + lista.get(++i);
+				lista.get(++i);
+				res +="</td><td>" + lista.get(++i) + "</td></tr>";
 			}
+			res+="</tbody>";
 			System.out.println(res);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -85,6 +89,7 @@ public class Solicitud {
 	public String getAnalistaTabla1(String boleta) {
 		String res = "<tbody>";
 		String query = "select s.idSolicitud, s.fecha, s.idAlumno, u.nombre, s.tipoDocumento, s.motivo from solicitud s, usuario u where status=\"impresa\" and s.idAlumno=u.idUsuario ORDER BY fecha DESC";
+		System.out.println(query);
 		try {
 			ArrayList<String> lista = pool.ejecutar(query);
 			for (int i = 0; i < lista.size(); i++) {
@@ -107,6 +112,7 @@ public class Solicitud {
 	public String getAnalistaTabla2(String boleta) {
 		String res = "<tbody>";
 		String query = "select s.idSolicitud, s.fecha, s.idAlumno, u.nombre, s.tipoDocumento, s.motivo from solicitud s, usuario u where status=\"enFirma\" and s.idAlumno=u.idUsuario ORDER BY fecha DESC";
+		System.out.println(query);
 		try {
 			ArrayList<String> lista = pool.ejecutar(query);
 			for (int i = 0; i < lista.size(); i++) {
@@ -126,8 +132,10 @@ public class Solicitud {
 	}
 
 	public String getAnalistaTabla3(String boleta) {
+		
 		String res = "<tbody>";
 		String query = "select s.idSolicitud, s.fecha, s.idAlumno, u.nombre, s.tipoDocumento, s.motivo from solicitud s, usuario u where status=\"lista\" and s.idAlumno=u.idUsuario ORDER BY fecha DESC";
+		System.out.println(query);
 		String noBoleta;
 		try {
 			ArrayList<String> lista = pool.ejecutar(query);

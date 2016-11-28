@@ -83,7 +83,7 @@ public class Login extends HttpServlet {
 				}
 				else{
 					System.out.println("no tiene correo");
-					request.setAttribute("boleta", usuario);
+					request.getSession().setAttribute("boleta", usuario);
 					request.getRequestDispatcher("registrarCorreo.jsp").forward(request, response);
 					//hacer pantalla para guardar correo y cambiar contrase�a
 				}

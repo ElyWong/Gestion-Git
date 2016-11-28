@@ -89,26 +89,7 @@
         	</section>
 </header>
 <!-- /header -->
-    
-	<!-- /header -->
-    
 
-	<!--Slider-->
-  	<!--Slider-->
-      
-    </div>
-    <!--/Slider Items-->
-    
-    <!--Slider Next Prev button-->
-    <nav id="nav-arrows" class="nav-arrows">
-        <span class="nav-arrow-prev"><i class="icon-angle-left"></i></span>
-        <span class="nav-arrow-next"><i class="icon-angle-right"></i></span> 
-    </nav>
-    <!--/Slider Next Prev button-->
-
-</div>
-<!-- /slider-wrapper -->           
-</section>
 <!--/Slider-->
 	<!-- Message -->
   	<!-- Message -->

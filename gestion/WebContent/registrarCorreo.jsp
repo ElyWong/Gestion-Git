@@ -88,28 +88,9 @@
         <img src="images/logoEscom.png" border="0" usemap="#logoMap" id="logo" title="ESCOM - Escuela Superior de Cómputo" />
         	</section>
 </header>
-<!-- /header -->
-    
-	<!-- /header -->
-    
-
-	<!--Slider-->
-  	<!--Slider-->
-      
-    </div>
-    <!--/Slider Items-->
-    
-    <!--Slider Next Prev button-->
-    <nav id="nav-arrows" class="nav-arrows">
-        <span class="nav-arrow-prev"><i class="icon-angle-left"></i></span>
-        <span class="nav-arrow-next"><i class="icon-angle-right"></i></span> 
-    </nav>
-    <!--/Slider Next Prev button-->
-
-</div>
 <!-- /slider-wrapper -->  
 <% 
-	String boleta = (String) request.getAttribute("boleta");
+	String boleta = (String) request.getSession().getAttribute("boleta");
 %>         
 </section>
 <!--/Slider-->
@@ -117,8 +98,8 @@
   	<!-- Message -->
   <section class="main-info">
 	<div class="row-fluid">
-	<h1>Bienvenido</h1>
-			<h3 align=center">Hemos notado que no tienes un correo asignado a tu cuenta. Para poder utilizar el sistema 
+	<h1 align="center">Bienvenido</h1>
+			<h3 align="center">Hemos notado que no tienes un correo asignado a tu cuenta. Para poder utilizar el sistema 
 			requieres registrar un correo electrónico y actualizar tu contraseña.</div><br><br>
 	<div class="container">
               	<!--<h3>Mensaje del Director</h3>-->

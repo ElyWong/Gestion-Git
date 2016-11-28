@@ -39,6 +39,10 @@ public class RegistroCorreo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		usuario= request.getParameter("boleta");
+		
+		if(usuario.length()<1){
+			usuario = request.getParameter("bol");
+		}
 		System.err.println(usuario);
 		email=request.getParameter("email");
 		pass0=request.getParameter("pass0");
@@ -86,6 +90,8 @@ public class RegistroCorreo extends HttpServlet {
 			
 		}
 		else{
+			   request.getSession().setAttribute("boleta", usuario);
+			   request.getSession().setAttribute("bol", usuario);
 			   PrintWriter out = response.getWriter();
 			   out.println("<script type=\"text/javascript\">");
 			   out.println("alert('Contraseña incorrecta');");
