@@ -50,7 +50,8 @@ public class Login implements Filter {
 			if(idUsuario == null) {
 				if(uri.endsWith("index.jsp")||uri.endsWith("gestion/")
 						||uri.endsWith("login")||uri.endsWith("gestion")
-						||uri.endsWith("RegistroCorreo")||uri.endsWith("registrarCorreo.jsp")) {
+						||uri.endsWith("RegistroCorreo")||uri.endsWith("registrarCorreo.jsp")
+						||uri.endsWith("RecuperarContra")||uri.endsWith("recuperarContra.jsp")) {
 					chain.doFilter(request, response);
 				} else {
 					rspns.sendRedirect("/gestion/");
